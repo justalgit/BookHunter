@@ -1,0 +1,28 @@
+<resources>
+
+    <string name="app_name">BookHunter</string>
+
+    <!--Overview fragment-->
+    <string name="no_books_message">You don\'t have any saved books.<br/><br/>
+        Hit the <b>search</b> button to find something interesting!</string>
+    <string name="sort_by_date">Sort by date</string>
+    <string name="sort_by_book_name">Sort by book name</string>
+    <string name="show_history">History</string>
+
+    <!--Search fragment-->
+    <string name="search_button_text">Search</string>
+
+    <!--Search result fragment-->
+    <string name="result_done_button_text">Done</string>
+
+    <!--About fragment-->
+    <string name="about">This app uses open <b>Google Books API</b>, which gives you
+        a set of books which contain the words, names, or terms you need.<br/><br/>
+        You can save books that you find useful or interesting for you, as well as take a look at the search history.<br/><br/>
+        Nonetheless, you can also add the necessary notes for saved books and share your find with a friend.<br/><br/>
+        <b>Enjoy!</b></string>
+    <string name="show_about">About</string>
+    <string name="sorted_by_date_message">Sorted by date of searching</string>
+    <string name="sorted_by_book_name_message">Sorted by book name</string>
+
+</resources>
