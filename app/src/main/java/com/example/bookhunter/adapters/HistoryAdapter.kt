@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookhunter.databinding.HistoryViewItemBinding
-import com.example.bookhunter.databinding.ResultBookViewItemBinding
-import com.example.bookhunter.entities.Book
-import com.example.bookhunter.entities.HistoryRecord
+import com.example.bookhunter.database.HistoryRecord
 
 class HistoryAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<HistoryRecord, HistoryAdapter.HistoryViewHolder>(DiffCallback) {

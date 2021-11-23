@@ -1,4 +1,4 @@
-package com.example.bookhunter.entities
+package com.example.bookhunter.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

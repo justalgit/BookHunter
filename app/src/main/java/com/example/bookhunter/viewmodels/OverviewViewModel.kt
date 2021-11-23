@@ -31,7 +31,7 @@ class OverviewViewModel : ViewModel() {
     }
 
     fun navigateToSearchDone() {
-        _isNavigatingToSearch.value = null
+        _isNavigatingToSearch.value = false
     }
 
     /**
@@ -43,7 +43,7 @@ class OverviewViewModel : ViewModel() {
     }
 
     fun navigateToHistoryDone() {
-        _isNavigatingToHistory.value = null
+        _isNavigatingToHistory.value = false
     }
 
     /**
@@ -55,6 +55,6 @@ class OverviewViewModel : ViewModel() {
     }
 
     fun navigateToAboutDone() {
-        _isNavigatingToAbout.value = null
+        _isNavigatingToAbout.value = false
     }
 }

@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
+import com.example.bookhunter.adapters.SearchResultAdapter
 import com.example.bookhunter.databinding.FragmentSearchBinding
 import com.example.bookhunter.databinding.FragmentSearchResultBinding
 import com.example.bookhunter.viewmodels.SearchResultViewModel
@@ -33,8 +36,14 @@ class SearchResultFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        binding.booksList.adapter = SearchResultAdapter(SearchResultAdapter.OnClickListener {
+            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+        })
+
+        binding.booksList.layoutManager = LinearLayoutManager(context)
+
         viewModel.isNavigatingToOverview.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
+            if (it) {
                 this.findNavController().navigate(
                     SearchResultFragmentDirections.actionSearchResultFragmentToOverviewFragment()
                 )

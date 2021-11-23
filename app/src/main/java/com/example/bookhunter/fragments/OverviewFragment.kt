@@ -32,7 +32,7 @@ class OverviewFragment : Fragment() {
         binding.viewModel = viewModel
 
         viewModel.isNavigatingToSearch.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
+            if (it) {
                 this.findNavController().navigate(
                     OverviewFragmentDirections.actionOverviewFragmentToSearchFragment()
                 )
@@ -41,7 +41,7 @@ class OverviewFragment : Fragment() {
         })
 
         viewModel.isNavigatingToHistory.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
+            if (it) {
                 this.findNavController().navigate(
                     OverviewFragmentDirections.actionOverviewFragmentToHistoryFragment()
                 )
@@ -50,7 +50,7 @@ class OverviewFragment : Fragment() {
         })
 
         viewModel.isNavigatingToAbout.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
+            if (it) {
                 this.findNavController().navigate(
                     OverviewFragmentDirections.actionOverviewFragmentToAboutFragment()
                 )
@@ -80,7 +80,7 @@ class OverviewFragment : Fragment() {
             R.id.sort_by_book_name -> Snackbar.make(
                 requireActivity().findViewById(android.R.id.content),
                 getString(R.string.sorted_by_book_name_message),
-                Snackbar.LENGTH_LONG
+                Snackbar.LENGTH_SHORT
             ).show()
             R.id.show_about -> viewModel.navigateToAbout()
         }

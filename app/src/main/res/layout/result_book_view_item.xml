@@ -7,13 +7,46 @@
     <data>
         <variable
             name="book"
-            type="com.example.bookhunter.entities.Book" />
+            type="com.example.bookhunter.database.Book" />
+        <variable
+            name="clickListener"
+            type="com.example.bookhunter.adapters.SearchResultAdapter.OnClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:onClick="@{() -> clickListener.onClick(book)}">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/book_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text='@{book.title ?? "Title not found"}'
+            tools:text="Book name" />
+
+        <TextView
+            android:id="@+id/authors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text='@{book.authorsStringFormatted ?? "Authors not found"}'
+            tools:text="Author one, Author two" />
+
+        <TextView
+            android:id="@+id/book_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text='@{book.url ?? "URL not found"}'
+            android:autoLink="web"
+            tools:text="URL: google.com"/>
+
+    </LinearLayout>
 
 </layout>

@@ -34,7 +34,7 @@ class SearchFragment : Fragment() {
         binding.viewModel = viewModel
 
         viewModel.isNavigatingToResult.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
+            if (it) {
                 this.findNavController().navigate(
                     SearchFragmentDirections.actionSearchFragmentToSearchResultFragment()
                 )

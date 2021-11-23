@@ -15,7 +15,7 @@ class SearchViewModel : ViewModel() {
     }
 
     fun navigateToResultDone() {
-        _isNavigatingToResult.value = null
+        _isNavigatingToResult.value = false
     }
 
 }

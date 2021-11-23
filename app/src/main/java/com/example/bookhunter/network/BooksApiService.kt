@@ -1,6 +1,6 @@
 package com.example.bookhunter.network
 
-import com.example.bookhunter.entities.Book
+import com.example.bookhunter.database.Book
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 // Base URL for Google Books API
-private const val BASE_URL =  "https://www.googleapis.com/books/v1/volumes?"
+private const val BASE_URL =  "https://www.googleapis.com/books/v1/"
 // Parameter for the search string
 private const val QUERY_PARAM = "q"
 // Parameter that limits search results
@@ -29,11 +29,11 @@ private val retrofit = Retrofit.Builder()
 
 interface BooksApiService {
 
-    @GET("books")
-    suspend fun getProperties(
+    @GET("volumes")
+    suspend fun getBooks(
         @Query(QUERY_PARAM) q: String,
         @Query(MAX_RESULTS) maxResults: Int
-    ): List<Book>
+    ): BookItems
 
 }
 

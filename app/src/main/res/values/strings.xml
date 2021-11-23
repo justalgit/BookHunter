@@ -25,4 +25,7 @@
     <string name="sorted_by_date_message">Sorted by date of searching</string>
     <string name="sorted_by_book_name_message">Sorted by book name</string>
 
+    <!--Result book view item-->
+    <string name="book_link">URL: %s</string>
+
 </resources>
