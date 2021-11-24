@@ -47,6 +47,12 @@
             app:destination="@id/overviewFragment"
             app:popUpTo="@id/overviewFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="searchQuery"
+            app:argType="string" />
+        <argument
+            android:name="maxResults"
+            app:argType="string" />
     </fragment>
 
     <!--History fragment-->

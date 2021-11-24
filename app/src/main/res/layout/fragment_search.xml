@@ -12,21 +12,63 @@
             type="com.example.bookhunter.viewmodels.SearchViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/search_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_button_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{() -> viewModel.navigateToResult()}"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/search_query_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/search_query_text"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/search_query_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:hint="@string/search_query_hint"
+                android:text="@={viewModel.searchQuery}"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/max_results_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/max_results_text" />
+
+            <EditText
+                android:id="@+id/max_results_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="@string/max_results_hint"
+                android:text="@={viewModel.maxResults}"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.navigateToResult()}"
+                android:text="@string/search_button_text"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </layout>

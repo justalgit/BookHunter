@@ -20,7 +20,6 @@
         android:padding="8dp"
         android:onClick="@{() -> clickListener.onClick(book)}">
 
-
         <TextView
             android:id="@+id/book_name"
             android:layout_width="match_parent"

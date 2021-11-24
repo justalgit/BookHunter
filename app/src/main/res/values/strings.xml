@@ -27,5 +27,9 @@
 
     <!--Result book view item-->
     <string name="book_link">URL: %s</string>
+    <string name="search_query_hint">What do you want to find?</string>
+    <string name="search_query_text">Search query</string>
+    <string name="max_results_text">Books number (between 1 and 40)</string>
+    <string name="max_results_hint">Number of books to show</string>
 
 </resources>

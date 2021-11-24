@@ -1,5 +1,6 @@
 package com.example.bookhunter.viewmodels
 
+import android.app.DownloadManager
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +12,15 @@ import com.example.bookhunter.network.asDatabaseModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class SearchResultViewModel : ViewModel() {
+class SearchResultViewModel(searchQuery: String, maxResults: String) : ViewModel() {
+
+    private val _searchQuery = MutableLiveData<String>()
+    val searchQuery: LiveData<String>
+        get() = _searchQuery
+
+    private val _maxResults = MutableLiveData<String>()
+    val maxResults: LiveData<String>
+        get() = _maxResults
 
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>>
@@ -21,17 +30,23 @@ class SearchResultViewModel : ViewModel() {
     val isNavigatingToOverview: LiveData<Boolean>
         get() = _isNavigatingToOverview
 
+
     init {
-        getBooks()
+        _searchQuery.value = searchQuery
+        _maxResults.value = maxResults
+        getBooks(searchQuery, maxResults)
     }
 
 
-    private fun getBooks() {
+    private fun getBooks(searchQuery: String, maxResults: String) {
         viewModelScope.launch {
             try {
-                _books.value = BooksApi.retrofitService.getBooks("Android", 10).asDatabaseModel()
+                _books.value = BooksApi.retrofitService.getBooks(
+                    searchQuery,
+                    maxResults.toInt()
+                ).asDatabaseModel()
                 Log.d("SearchResultViewModel", "Fetched ${books.value?.size} values")
-                //Log.d("SearchResultViewModel", books.value.toString())
+                Log.d("SearchResultViewModel", books.value.toString())
             }
             catch (e: Exception) {
                 _books.value = ArrayList()

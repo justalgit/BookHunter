@@ -13,45 +13,46 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
 import com.example.bookhunter.adapters.SearchResultAdapter
-import com.example.bookhunter.databinding.FragmentSearchBinding
 import com.example.bookhunter.databinding.FragmentSearchResultBinding
 import com.example.bookhunter.viewmodels.SearchResultViewModel
-import com.example.bookhunter.viewmodels.SearchViewModel
+import com.example.bookhunter.viewmodels.SearchResultViewModelFactory
 
 
 class SearchResultFragment : Fragment() {
 
-    private val viewModel: SearchResultViewModel by lazy {
-        ViewModelProvider(this).get(SearchResultViewModel::class.java)
-    }
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            val arguments = SearchResultFragmentArgs.fromBundle(requireArguments())
+            val viewModelFactory = SearchResultViewModelFactory(
+                arguments.searchQuery, arguments.maxResults)
+            val viewModel = ViewModelProvider(this, viewModelFactory)
+                .get(SearchResultViewModel::class.java)
 
-        val binding: FragmentSearchResultBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_search_result, container, false)
+            val binding: FragmentSearchResultBinding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_search_result, container, false)
 
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+            binding.lifecycleOwner = this
+            binding.viewModel = viewModel
 
-        binding.booksList.adapter = SearchResultAdapter(SearchResultAdapter.OnClickListener {
-            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
-        })
+            binding.booksList.adapter = SearchResultAdapter(SearchResultAdapter.OnClickListener {
+                Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+            })
 
-        binding.booksList.layoutManager = LinearLayoutManager(context)
+            binding.booksList.layoutManager = LinearLayoutManager(context)
 
-        viewModel.isNavigatingToOverview.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                this.findNavController().navigate(
-                    SearchResultFragmentDirections.actionSearchResultFragmentToOverviewFragment()
-                )
-                viewModel.navigateToOverviewDone()
-            }
-        })
+            viewModel.isNavigatingToOverview.observe(viewLifecycleOwner, Observer {
+                if (it) {
+                    this.findNavController().navigate(
+                        SearchResultFragmentDirections.actionSearchResultFragmentToOverviewFragment()
+                    )
+                    viewModel.navigateToOverviewDone()
+                }
+            })
 
-        return binding.root
-    }
+            return binding.root
+        }
 
 }

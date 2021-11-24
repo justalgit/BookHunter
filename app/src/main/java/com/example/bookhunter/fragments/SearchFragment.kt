@@ -10,9 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.bookhunter.R
-import com.example.bookhunter.databinding.FragmentOverviewBinding
 import com.example.bookhunter.databinding.FragmentSearchBinding
-import com.example.bookhunter.viewmodels.OverviewViewModel
 import com.example.bookhunter.viewmodels.SearchViewModel
 
 
@@ -36,7 +34,10 @@ class SearchFragment : Fragment() {
         viewModel.isNavigatingToResult.observe(viewLifecycleOwner, Observer {
             if (it) {
                 this.findNavController().navigate(
-                    SearchFragmentDirections.actionSearchFragmentToSearchResultFragment()
+                    SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(
+                        viewModel.searchQuery.value.toString(),
+                        viewModel.maxResults.value.toString()
+                    )
                 )
                 viewModel.navigateToResultDone()
             }
