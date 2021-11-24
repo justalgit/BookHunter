@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 import java.util.*
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "search_params")
 @Parcelize
+//@Entity(tableName = "search_params")
 data class SearchParams(
     val searchQuery: String?,
     val maxResults: Int?,
-    val date: Date = Calendar.getInstance().time,
+    val date: String = Calendar.getInstance().time.toString(),
     @PrimaryKey(autoGenerate = true)
-    val id: String = "-1"
+    val id: Int = -1
 ) : Parcelable

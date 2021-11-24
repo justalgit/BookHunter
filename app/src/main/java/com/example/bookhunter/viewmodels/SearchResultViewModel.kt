@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookhunter.database.SearchParamsDao
 import com.example.bookhunter.database.entities.Book
 import com.example.bookhunter.database.entities.SearchParams
 import com.example.bookhunter.network.BooksApi
@@ -14,7 +13,6 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class SearchResultViewModel(
-    dataSource: SearchParamsDao,
     searchParams: SearchParams
 ) : ViewModel() {
 

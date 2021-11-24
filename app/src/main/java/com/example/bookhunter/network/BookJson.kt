@@ -10,7 +10,7 @@ data class BookItems(
 
 @JsonClass(generateAdapter = true)
 data class BookInfo(
-    val id: String? = null,
+    val id: String,
     val volumeInfo: VolumeInfo? = null)
 
 @JsonClass(generateAdapter = true)

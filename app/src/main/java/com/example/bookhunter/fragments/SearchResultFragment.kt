@@ -27,8 +27,7 @@ class SearchResultFragment : Fragment() {
 
             val arguments = SearchResultFragmentArgs.fromBundle(requireArguments())
             val viewModelFactory = SearchResultViewModelFactory(arguments.searchParams)
-            val viewModel = ViewModelProvider(this, viewModelFactory)
-                .get(SearchResultViewModel::class.java)
+            val viewModel = ViewModelProvider(this, viewModelFactory).get(SearchResultViewModel::class.java)
 
             val binding: FragmentSearchResultBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_search_result, container, false)

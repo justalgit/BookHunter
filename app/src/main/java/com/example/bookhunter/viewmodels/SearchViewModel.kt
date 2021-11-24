@@ -4,16 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookhunter.database.SearchParamsDao
 import com.example.bookhunter.database.entities.SearchParams
 import com.example.bookhunter.utils.isMaxResultsValid
 import kotlinx.coroutines.launch
 
-class SearchViewModel(
-    dataSource: SearchParamsDao
-) : ViewModel() {
-
-    val database = dataSource
+class SearchViewModel() : ViewModel() {
 
     val searchQuery = MutableLiveData<String>()
     val maxResults = MutableLiveData<String>()
@@ -40,9 +35,9 @@ class SearchViewModel(
                 maxResults.value?.toInt()
             )
 
-            viewModelScope.launch {
-                database.insert(currentSearchParams)
-            }
+            //viewModelScope.launch {
+                //database.insert(currentSearchParams)
+            //}
 
             _isNavigatingToResult.value = currentSearchParams
         }
