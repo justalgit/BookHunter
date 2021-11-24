@@ -48,11 +48,8 @@
             app:popUpTo="@id/overviewFragment"
             app:popUpToInclusive="true" />
         <argument
-            android:name="searchQuery"
-            app:argType="string" />
-        <argument
-            android:name="maxResults"
-            app:argType="string" />
+            android:name="searchParams"
+            app:argType="com.example.bookhunter.database.entities.SearchParams" />
     </fragment>
 
     <!--History fragment-->

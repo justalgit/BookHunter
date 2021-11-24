@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookhunter.databinding.HistoryViewItemBinding
-import com.example.bookhunter.database.HistoryRecord
+import com.example.bookhunter.database.entities.SearchParams
 
 class HistoryAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<HistoryRecord, HistoryAdapter.HistoryViewHolder>(DiffCallback) {
+    ListAdapter<SearchParams, HistoryAdapter.HistoryViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         return HistoryViewHolder(HistoryViewItemBinding.inflate(
@@ -29,25 +29,25 @@ class HistoryAdapter(private val onClickListener: OnClickListener) :
     class HistoryViewHolder(private var binding: HistoryViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(historyRecord: HistoryRecord) {
-            binding.historyRecord = historyRecord
+        fun bind(searchParams: SearchParams) {
+            binding.historyRecord = searchParams
             binding.executePendingBindings()
         }
 
     }
 
 
-    companion object DiffCallback : DiffUtil.ItemCallback<HistoryRecord>() {
-        override fun areItemsTheSame(oldItem: HistoryRecord, newItem: HistoryRecord): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<SearchParams>() {
+        override fun areItemsTheSame(oldItem: SearchParams, newItem: SearchParams): Boolean {
             return oldItem === newItem
         }
-        override fun areContentsTheSame(oldItem: HistoryRecord, newItem: HistoryRecord): Boolean {
+        override fun areContentsTheSame(oldItem: SearchParams, newItem: SearchParams): Boolean {
             return oldItem.id == newItem.id
         }
     }
 
 
-    class OnClickListener(val clickListener: (historyRecord: HistoryRecord) -> Unit) {
-        fun onClick(historyRecord: HistoryRecord) = clickListener(historyRecord)
+    class OnClickListener(val clickListener: (searchParams: SearchParams) -> Unit) {
+        fun onClick(searchParams: SearchParams) = clickListener(searchParams)
     }
 }

@@ -1,26 +1,26 @@
 package com.example.bookhunter.viewmodels
 
-import android.app.DownloadManager
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookhunter.database.Book
+import com.example.bookhunter.database.SearchParamsDao
+import com.example.bookhunter.database.entities.Book
+import com.example.bookhunter.database.entities.SearchParams
 import com.example.bookhunter.network.BooksApi
 import com.example.bookhunter.network.asDatabaseModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class SearchResultViewModel(searchQuery: String, maxResults: String) : ViewModel() {
+class SearchResultViewModel(
+    dataSource: SearchParamsDao,
+    searchParams: SearchParams
+) : ViewModel() {
 
-    private val _searchQuery = MutableLiveData<String>()
-    val searchQuery: LiveData<String>
-        get() = _searchQuery
-
-    private val _maxResults = MutableLiveData<String>()
-    val maxResults: LiveData<String>
-        get() = _maxResults
+    private val _searchParams = MutableLiveData<SearchParams>()
+    val searchParams: LiveData<SearchParams>
+        get() = _searchParams
 
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>>
@@ -32,18 +32,17 @@ class SearchResultViewModel(searchQuery: String, maxResults: String) : ViewModel
 
 
     init {
-        _searchQuery.value = searchQuery
-        _maxResults.value = maxResults
-        getBooks(searchQuery, maxResults)
+        _searchParams.value = searchParams
+        getBooks(searchParams)
     }
 
 
-    private fun getBooks(searchQuery: String, maxResults: String) {
+    private fun getBooks(searchParams: SearchParams) {
         viewModelScope.launch {
             try {
                 _books.value = BooksApi.retrofitService.getBooks(
-                    searchQuery,
-                    maxResults.toInt()
+                    searchParams.searchQuery,
+                    searchParams.maxResults
                 ).asDatabaseModel()
                 Log.d("SearchResultViewModel", "Fetched ${books.value?.size} values")
                 Log.d("SearchResultViewModel", books.value.toString())

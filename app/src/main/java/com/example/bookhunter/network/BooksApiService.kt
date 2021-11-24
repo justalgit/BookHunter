@@ -1,6 +1,5 @@
 package com.example.bookhunter.network
 
-import com.example.bookhunter.database.Book
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -31,8 +30,8 @@ interface BooksApiService {
 
     @GET("volumes")
     suspend fun getBooks(
-        @Query(QUERY_PARAM) q: String,
-        @Query(MAX_RESULTS) maxResults: Int
+        @Query(QUERY_PARAM) q: String?,
+        @Query(MAX_RESULTS) maxResults: Int?
     ): BookItems
 
 }

@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.bookhunter.R
 import com.example.bookhunter.databinding.FragmentSearchBinding
 import com.example.bookhunter.viewmodels.SearchViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class SearchFragment : Fragment() {
@@ -31,13 +32,20 @@ class SearchFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        viewModel.isInputValid.observe(viewLifecycleOwner, Observer {
+            if (!it) {
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.invalid_input_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        })
+
         viewModel.isNavigatingToResult.observe(viewLifecycleOwner, Observer {
-            if (it) {
+            if (it != null) {
                 this.findNavController().navigate(
-                    SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(
-                        viewModel.searchQuery.value.toString(),
-                        viewModel.maxResults.value.toString()
-                    )
+                    SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(it)
                 )
                 viewModel.navigateToResultDone()
             }

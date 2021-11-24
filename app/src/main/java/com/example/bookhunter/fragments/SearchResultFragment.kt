@@ -26,8 +26,7 @@ class SearchResultFragment : Fragment() {
         ): View? {
 
             val arguments = SearchResultFragmentArgs.fromBundle(requireArguments())
-            val viewModelFactory = SearchResultViewModelFactory(
-                arguments.searchQuery, arguments.maxResults)
+            val viewModelFactory = SearchResultViewModelFactory(arguments.searchParams)
             val viewModel = ViewModelProvider(this, viewModelFactory)
                 .get(SearchResultViewModel::class.java)
 

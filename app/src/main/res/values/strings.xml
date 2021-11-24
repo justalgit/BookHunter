@@ -10,7 +10,15 @@
     <string name="show_history">History</string>
 
     <!--Search fragment-->
+    <string name="search_query_hint">What do you want to find?</string>
+    <string name="search_query_text">Search query</string>
+    <string name="max_results_text">Books number</string>
+    <string name="max_results_input_description">Note: Google Books service requires this parameter to be
+        more than 0 and up to 40.</string>
+    <string name="max_results_hint">Number of books to show</string>
     <string name="search_button_text">Search</string>
+    <string name="invalid_input_message">Query must not be empty and
+        books number must be valid!</string>
 
     <!--Search result fragment-->
     <string name="result_done_button_text">Done</string>
@@ -27,9 +35,5 @@
 
     <!--Result book view item-->
     <string name="book_link">URL: %s</string>
-    <string name="search_query_hint">What do you want to find?</string>
-    <string name="search_query_text">Search query</string>
-    <string name="max_results_text">Books number (between 1 and 40)</string>
-    <string name="max_results_hint">Number of books to show</string>
 
 </resources>

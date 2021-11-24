@@ -7,7 +7,7 @@
     <data>
         <variable
             name="historyRecord"
-            type="com.example.bookhunter.database.HistoryRecord" />
+            type="com.example.bookhunter.database.entities.SearchParams" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,9 +1,9 @@
-package com.example.bookhunter.database
+package com.example.bookhunter.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "books")
 data class Book(
     @PrimaryKey
     val id: String?,

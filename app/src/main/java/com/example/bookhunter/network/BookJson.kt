@@ -1,6 +1,6 @@
 package com.example.bookhunter.network
 
-import com.example.bookhunter.database.Book
+import com.example.bookhunter.database.entities.Book
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

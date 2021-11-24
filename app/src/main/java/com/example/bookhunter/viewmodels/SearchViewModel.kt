@@ -1,27 +1,57 @@
 package com.example.bookhunter.viewmodels
 
-import android.util.Log
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.bookhunter.database.SearchParamsDao
+import com.example.bookhunter.database.entities.SearchParams
+import com.example.bookhunter.utils.isMaxResultsValid
+import kotlinx.coroutines.launch
 
-class SearchViewModel : ViewModel() {
+class SearchViewModel(
+    dataSource: SearchParamsDao
+) : ViewModel() {
+
+    val database = dataSource
 
     val searchQuery = MutableLiveData<String>()
     val maxResults = MutableLiveData<String>()
 
-    private val _isNavigatingToResult = MutableLiveData<Boolean>()
-    val isNavigatingToResult: LiveData<Boolean>
+    private val _isNavigatingToResult = MutableLiveData<SearchParams>()
+    val isNavigatingToResult: LiveData<SearchParams>
         get() = _isNavigatingToResult
 
+    private val _isInputValid = MutableLiveData<Boolean>()
+    val isInputValid: LiveData<Boolean>
+        get() = _isInputValid
+
+
     fun navigateToResult() {
-        _isNavigatingToResult.value = true
-        Log.d("SearchViewModel", "Search parameters: ${searchQuery.value}, ${maxResults.value}")
+
+        _isInputValid.value = true
+
+        if (searchQuery.value?.isEmpty() == true || !isMaxResultsValid(maxResults.value.toString())) {
+            _isInputValid.value = false
+        }
+        else {
+            val currentSearchParams = SearchParams(
+                searchQuery.value,
+                maxResults.value?.toInt()
+            )
+
+            viewModelScope.launch {
+                database.insert(currentSearchParams)
+            }
+
+            _isNavigatingToResult.value = currentSearchParams
+        }
+
     }
 
+
     fun navigateToResultDone() {
-        _isNavigatingToResult.value = false
+        _isNavigatingToResult.value = null
     }
 
 }
