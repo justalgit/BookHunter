@@ -17,11 +17,14 @@
         android:layout_width="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/saved_books_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:padding="8dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:savedBooksData="@{viewModel.savedBooks}"
+            tools:itemCount="5"
+            tools:listitem="@layout/saved_book_view_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/overview_search_fab_button"
@@ -40,6 +43,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:padding="8dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

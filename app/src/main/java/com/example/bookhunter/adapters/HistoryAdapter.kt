@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookhunter.databinding.HistoryViewItemBinding
-import com.example.bookhunter.database.entities.SearchParams
+import com.example.bookhunter.database.SearchParams
 
 class HistoryAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<SearchParams, HistoryAdapter.HistoryViewHolder>(DiffCallback) {
@@ -30,7 +30,7 @@ class HistoryAdapter(private val onClickListener: OnClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(searchParams: SearchParams) {
-            binding.historyRecord = searchParams
+            binding.searchParams = searchParams
             binding.executePendingBindings()
         }
 

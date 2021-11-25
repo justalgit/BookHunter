@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookhunter.databinding.SavedBookViewItemBinding
-import com.example.bookhunter.database.entities.Book
+import com.example.bookhunter.database.Book
 
-class SavedBookAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<Book, SavedBookAdapter.BookViewHolder>(DiffCallback) {
+class SavedBooksAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<Book, SavedBooksAdapter.BookViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         return BookViewHolder(SavedBookViewItemBinding.inflate(

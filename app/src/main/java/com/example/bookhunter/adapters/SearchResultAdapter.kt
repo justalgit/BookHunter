@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookhunter.databinding.ResultBookViewItemBinding
-import com.example.bookhunter.database.entities.Book
+import com.example.bookhunter.database.Book
 
 class SearchResultAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Book, SearchResultAdapter.BookViewHolder>(DiffCallback) {

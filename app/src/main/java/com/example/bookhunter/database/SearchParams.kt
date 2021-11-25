@@ -1,4 +1,4 @@
-package com.example.bookhunter.database.entities
+package com.example.bookhunter.database
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -7,11 +7,11 @@ import java.util.*
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-//@Entity(tableName = "search_params")
+@Entity(tableName = "search_params")
 data class SearchParams(
-    val searchQuery: String?,
-    val maxResults: Int?,
-    val date: String = Calendar.getInstance().time.toString(),
+    var searchQuery: String?,
+    var maxResults: Int?,
+    var date: String?,
     @PrimaryKey(autoGenerate = true)
-    val id: Int = -1
+    var id: Long? = null
 ) : Parcelable

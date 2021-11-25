@@ -13,6 +13,7 @@ import com.example.bookhunter.R
 import com.example.bookhunter.databinding.FragmentSearchBinding
 import com.example.bookhunter.viewmodels.SearchViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.example.bookhunter.database.SearchParams
 
 
 class SearchFragment : Fragment() {

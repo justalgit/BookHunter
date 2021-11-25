@@ -19,13 +19,13 @@
             android:id="@+id/books_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="8dp"
             app:layout_constraintBottom_toTopOf="@+id/result_done_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:listData="@{viewModel.books}"
+            app:searchedBooksData="@{viewModel.books}"
             tools:itemCount="5"
             tools:listitem="@layout/result_book_view_item" />
 

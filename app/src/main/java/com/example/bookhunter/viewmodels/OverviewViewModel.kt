@@ -1,10 +1,20 @@
 package com.example.bookhunter.viewmodels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.bookhunter.database.BooksDatabase
+import com.example.bookhunter.database.BooksRepository
 
-class OverviewViewModel : ViewModel() {
+class OverviewViewModel(
+    application: Application
+) : AndroidViewModel(application) {
+
+    private val booksRepository = BooksRepository(BooksDatabase.getInstance(application))
+
+    val savedBooks = booksRepository.savedBooks
 
     private val _isNavigatingToSearch = MutableLiveData<Boolean>()
     val isNavigatingToSearch: LiveData<Boolean>

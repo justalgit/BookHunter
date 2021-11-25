@@ -6,14 +6,45 @@
 
     <data>
         <variable
-            name="historyRecord"
-            type="com.example.bookhunter.database.entities.SearchParams" />
+            name="searchParams"
+            type="com.example.bookhunter.database.SearchParams" />
+        <variable
+            name="clickListener"
+            type="com.example.bookhunter.adapters.HistoryAdapter.OnClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:onClick="@{() -> clickListener.onClick(searchParams)}">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/query_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text='@{searchParams.date}'
+            tools:text="Query date" />
+
+        <TextView
+            android:id="@+id/query_string"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text='@{searchParams.searchQuery}'
+            tools:text="Search query" />
+
+        <TextView
+            android:id="@+id/query_max_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text='@{Integer.toString(searchParams.maxResults)}'
+            tools:text="Max results: 10" />
+
+    </LinearLayout>
 
 </layout>

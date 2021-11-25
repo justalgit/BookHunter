@@ -1,6 +1,6 @@
 package com.example.bookhunter.network
 
-import com.example.bookhunter.database.entities.Book
+import com.example.bookhunter.database.Book
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -28,7 +28,7 @@ fun BookItems.asDatabaseModel(): List<Book>? {
         Book(
             id = it.id,
             title = it.volumeInfo?.title,
-            authors = it.volumeInfo?.authors,
+            authors = it.volumeInfo?.authors?.joinToString { it },
             url = it.volumeInfo?.canonicalVolumeLink)
     }
 }

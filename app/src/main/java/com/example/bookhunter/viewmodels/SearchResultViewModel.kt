@@ -1,20 +1,23 @@
 package com.example.bookhunter.viewmodels
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.bookhunter.database.entities.Book
-import com.example.bookhunter.database.entities.SearchParams
+import androidx.lifecycle.*
+import com.example.bookhunter.database.Book
+import com.example.bookhunter.database.BooksDatabase
+import com.example.bookhunter.database.BooksRepository
+import com.example.bookhunter.database.SearchParams
 import com.example.bookhunter.network.BooksApi
 import com.example.bookhunter.network.asDatabaseModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class SearchResultViewModel(
-    searchParams: SearchParams
-) : ViewModel() {
+    searchParams: SearchParams,
+    application: Application
+) : AndroidViewModel(application) {
+
+    private val booksRepository = BooksRepository(BooksDatabase.getInstance(application))
 
     private val _searchParams = MutableLiveData<SearchParams>()
     val searchParams: LiveData<SearchParams>
@@ -32,23 +35,35 @@ class SearchResultViewModel(
     init {
         _searchParams.value = searchParams
         getBooks(searchParams)
+        saveToHistory(searchParams)
     }
 
 
     private fun getBooks(searchParams: SearchParams) {
         viewModelScope.launch {
             try {
-                _books.value = BooksApi.retrofitService.getBooks(
-                    searchParams.searchQuery,
-                    searchParams.maxResults
-                ).asDatabaseModel()
-                Log.d("SearchResultViewModel", "Fetched ${books.value?.size} values")
-                Log.d("SearchResultViewModel", books.value.toString())
+                _books.value = booksRepository.getBooksFromApi(searchParams)
+                Log.d(
+                    "SearchResultViewModel",
+                    "Current values in database: ${booksRepository.historySearchParams.value}"
+                )
             }
             catch (e: Exception) {
                 _books.value = ArrayList()
                 Log.d("SearchResultViewModel", "Error while fetching books: ${e.message}")
             }
+        }
+    }
+
+    fun saveBook(book: Book) {
+        viewModelScope.launch {
+            booksRepository.insertBook(book)
+        }
+    }
+
+    private fun saveToHistory(searchParams: SearchParams) {
+        viewModelScope.launch {
+            booksRepository.insertSearchParams(searchParams)
         }
     }
 

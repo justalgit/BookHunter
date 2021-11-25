@@ -7,7 +7,7 @@
     <data>
         <variable
             name="book"
-            type="com.example.bookhunter.database.entities.Book" />
+            type="com.example.bookhunter.database.Book" />
         <variable
             name="clickListener"
             type="com.example.bookhunter.adapters.SearchResultAdapter.OnClickListener" />
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text='@{book.authorsStringFormatted ?? "Authors not found"}'
+            android:text='@{book.authors ?? "Authors not found"}'
             tools:text="Author one, Author two" />
 
         <TextView

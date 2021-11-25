@@ -14,20 +14,29 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
 import com.example.bookhunter.adapters.SearchResultAdapter
 import com.example.bookhunter.databinding.FragmentSearchResultBinding
+import com.example.bookhunter.viewmodels.HistoryViewModel
+import com.example.bookhunter.viewmodels.HistoryViewModelFactory
 import com.example.bookhunter.viewmodels.SearchResultViewModel
 import com.example.bookhunter.viewmodels.SearchResultViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 
 class SearchResultFragment : Fragment() {
+
+        private val viewModel: SearchResultViewModel by lazy {
+            val activity = requireNotNull(this.activity)
+            val arguments = SearchResultFragmentArgs.fromBundle(requireArguments())
+            val viewModelFactory = SearchResultViewModelFactory(
+                arguments.searchParams,
+                activity.application
+            )
+            ViewModelProvider(this, viewModelFactory).get(SearchResultViewModel::class.java)
+        }
 
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View? {
-
-            val arguments = SearchResultFragmentArgs.fromBundle(requireArguments())
-            val viewModelFactory = SearchResultViewModelFactory(arguments.searchParams)
-            val viewModel = ViewModelProvider(this, viewModelFactory).get(SearchResultViewModel::class.java)
 
             val binding: FragmentSearchResultBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_search_result, container, false)
@@ -36,7 +45,12 @@ class SearchResultFragment : Fragment() {
             binding.viewModel = viewModel
 
             binding.booksList.adapter = SearchResultAdapter(SearchResultAdapter.OnClickListener {
-                Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+                viewModel.saveBook(it)
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    "${it.title} saved!",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             })
 
             binding.booksList.layoutManager = LinearLayoutManager(context)

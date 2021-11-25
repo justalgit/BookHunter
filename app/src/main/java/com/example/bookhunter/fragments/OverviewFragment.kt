@@ -8,16 +8,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
+import com.example.bookhunter.adapters.SavedBooksAdapter
 import com.example.bookhunter.databinding.FragmentOverviewBinding
 import com.example.bookhunter.viewmodels.OverviewViewModel
+import com.example.bookhunter.viewmodels.OverviewViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 
 class OverviewFragment : Fragment() {
 
     private val viewModel: OverviewViewModel by lazy {
-        ViewModelProvider(this).get(OverviewViewModel::class.java)
+        val activity = requireNotNull(this.activity)
+        val viewModelFactory = OverviewViewModelFactory(activity.application)
+        ViewModelProvider(this, viewModelFactory).get(OverviewViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -30,6 +35,12 @@ class OverviewFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        binding.savedBooksList.adapter = SavedBooksAdapter(SavedBooksAdapter.OnClickListener {
+            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+        })
+
+        binding.savedBooksList.layoutManager = LinearLayoutManager(context)
 
         viewModel.isNavigatingToSearch.observe(viewLifecycleOwner, Observer {
             if (it) {
