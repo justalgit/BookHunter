@@ -5,6 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/overviewFragment">
 
+
     <!--Overview (main) fragment-->
     <fragment
         android:id="@+id/overviewFragment"
@@ -25,6 +26,7 @@
             app:destination="@id/aboutFragment" />
     </fragment>
 
+
     <!--Search fragment-->
     <fragment
         android:id="@+id/searchFragment"
@@ -35,6 +37,7 @@
             android:id="@+id/action_searchFragment_to_searchResultFragment"
             app:destination="@id/searchResultFragment" />
     </fragment>
+
 
     <!--Search result fragment-->
     <fragment
@@ -52,6 +55,7 @@
             app:argType="com.example.bookhunter.database.SearchParams" />
     </fragment>
 
+
     <!--History fragment-->
     <fragment
         android:id="@+id/historyFragment"
@@ -62,6 +66,9 @@
             android:id="@+id/action_historyFragment_to_searchResultFragment"
             app:destination="@id/searchResultFragment" />
     </fragment>
+
+
+    <!--Detail fragment-->
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.bookhunter.fragments.DetailFragment"
@@ -70,7 +77,11 @@
         <action
             android:id="@+id/action_detailFragment_to_overviewFragment"
             app:destination="@id/overviewFragment" />
+        <argument
+            android:name="selectedBook"
+            app:argType="com.example.bookhunter.database.Book" />
     </fragment>
+
 
     <!--About fragment-->
     <fragment

@@ -15,6 +15,7 @@ class OverviewViewModel(
 
     var savedBooks: LiveData<List<Book>>
 
+
     private val _isNavigatingToSearch = MutableLiveData<Boolean>()
     val isNavigatingToSearch: LiveData<Boolean>
         get() = _isNavigatingToSearch
@@ -22,10 +23,6 @@ class OverviewViewModel(
     private val _isNavigatingToHistory = MutableLiveData<Boolean>()
     val isNavigatingToHistory: LiveData<Boolean>
         get() = _isNavigatingToHistory
-
-    //private val _displayBookDetail = MutableLiveData<Book>()
-    //val displayBookDetail: LiveData<Book>
-    //    get() = _displayBookDetail
 
     private val _isNavigatingToAbout = MutableLiveData<Boolean>()
     val isNavigatingToAbout: LiveData<Boolean>

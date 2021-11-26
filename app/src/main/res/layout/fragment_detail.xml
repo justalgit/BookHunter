@@ -1,20 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".fragments.DetailFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Detail fragment"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.bookhunter.viewmodels.DetailViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/selected_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="@{viewModel.selectedBook.title}"
+                tools:text="Book name"/>
+
+            <TextView
+                android:id="@+id/selected_book_authors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
+                android:text="@{@string/book_authors(viewModel.selectedBook.authors)}"
+                tools:text="Author one, Author two"/>
+
+            <TextView
+                android:id="@+id/selected_book_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
+                android:text="@{@string/book_link(viewModel.selectedBook.url)}"
+                android:autoLink="web"
+                tools:text="URL: google.com"/>
+
+            <TextView
+                android:id="@+id/selected_book_saving_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
+                android:text="@{@string/book_saving_date(viewModel.selectedBook.savingDate)}"
+                android:autoLink="web"
+                tools:text="Saved on: 31/12/2021 23:59:59"/>
+
+            <EditText
+                android:id="@+id/selected_book_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@color/light_grey"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:lines="5"
+                android:scrollHorizontally="false"
+                android:text="@={viewModel.selectedBook.note}"
+                android:hint="@string/book_note_hint"/>
+
+            <Button
+                android:id="@+id/save_book_changes_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/save_book_changes"
+                android:layout_gravity="center_horizontal"
+                android:onClick="@{() -> viewModel.updateBook(viewModel.selectedBook)}"/>
+
+            <Button
+                android:id="@+id/delete_book_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_book"
+                android:layout_gravity="center_horizontal"
+                android:onClick="@{() -> viewModel.deleteBook(viewModel.selectedBook)}"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

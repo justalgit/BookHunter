@@ -17,14 +17,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
         android:onClick="@{() -> clickListener.onClick(searchParams)}">
 
         <TextView
             android:id="@+id/query_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:text='@{searchParams.date}'
             tools:text="Query date" />
@@ -33,16 +35,16 @@
             android:id="@+id/query_string"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text='@{searchParams.searchQuery}'
+            android:textSize="18sp"
+            android:text='@{@string/search_query(searchParams.searchQuery)}'
             tools:text="Search query" />
 
         <TextView
             android:id="@+id/query_max_results"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text='@{Integer.toString(searchParams.maxResults)}'
+            android:textSize="18sp"
+            android:text='@{@string/search_max_results(Integer.toString(searchParams.maxResults))}'
             tools:text="Max results: 10" />
 
     </LinearLayout>

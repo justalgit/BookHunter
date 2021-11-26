@@ -11,6 +11,6 @@ fun isMaxResultsValid(stringNum: String): Boolean {
 }
 
 fun currentDateAsString(): String {
-    val sdf = SimpleDateFormat("'Date:' dd/MM/yyyy', time:' hh:mm:ss")
+    val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
     return sdf.format(Date())
 }

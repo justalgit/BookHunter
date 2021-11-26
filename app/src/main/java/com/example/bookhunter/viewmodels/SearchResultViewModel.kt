@@ -7,11 +7,11 @@ import com.example.bookhunter.database.Book
 import com.example.bookhunter.database.BooksDatabase
 import com.example.bookhunter.database.BooksRepository
 import com.example.bookhunter.database.SearchParams
-import com.example.bookhunter.network.BooksApi
-import com.example.bookhunter.network.asDatabaseModel
 import com.example.bookhunter.utils.currentDateAsString
 import kotlinx.coroutines.launch
 import java.lang.Exception
+
+enum class BooksApiStatus { LOADING, EMPTY_RESULT, ERROR, DONE }
 
 class SearchResultViewModel(
     searchParams: SearchParams,
@@ -32,6 +32,10 @@ class SearchResultViewModel(
     val isNavigatingToOverview: LiveData<Boolean>
         get() = _isNavigatingToOverview
 
+    private val _loadingStatus = MutableLiveData<BooksApiStatus>()
+    val loadingStatus: LiveData<BooksApiStatus>
+        get() = _loadingStatus
+
 
     init {
         _searchParams.value = searchParams
@@ -43,14 +47,24 @@ class SearchResultViewModel(
     private fun getBooks(searchParams: SearchParams) {
         viewModelScope.launch {
             try {
+                _loadingStatus.value = BooksApiStatus.LOADING
                 _books.value = booksRepository.getBooksFromApi(searchParams)
+
+                if (books.value == null || books.value?.isEmpty() == true)
+                    _loadingStatus.value = BooksApiStatus.EMPTY_RESULT
+                else {
+                    _loadingStatus.value = BooksApiStatus.DONE
+                }
+
                 Log.d(
                     "SearchResultViewModel",
                     "Current values in database: ${booksRepository.historySearchParams.value}"
                 )
+
             }
             catch (e: Exception) {
                 _books.value = ArrayList()
+                _loadingStatus.value = BooksApiStatus.ERROR
                 Log.d("SearchResultViewModel", "Error while fetching books: ${e.message}")
             }
         }

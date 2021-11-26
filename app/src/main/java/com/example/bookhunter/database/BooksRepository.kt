@@ -12,27 +12,26 @@ class BooksRepository(private val database: BooksDatabase) {
 
     val historySearchParams: LiveData<List<SearchParams>> = database.searchParamsDao.getAll()
 
-    fun getBooksOrderedByDate(): LiveData<List<Book>> {
-        return database.bookDao.getAllSortedByDate()
-    }
+    /**
+     * Book fetching from remote API
+     */
+
+    suspend fun getBooksFromApi(searchParams: SearchParams) = BooksApi.retrofitService.getBooks(
+        searchParams.searchQuery,
+        searchParams.maxResults
+    ).asDatabaseModel()
+
+    /**
+     * Book DAO methods
+     */
 
     fun getBooksOrderedByTitle(): LiveData<List<Book>> {
         return database.bookDao.getAllSortedByTitle()
     }
 
-
-    suspend fun getBooksFromApi(searchParams: SearchParams) = BooksApi.retrofitService.getBooks(
-            searchParams.searchQuery,
-            searchParams.maxResults
-    ).asDatabaseModel()
-
-
-    suspend fun insertSearchParams(searchParams: SearchParams) {
-        withContext(Dispatchers.IO) {
-            database.searchParamsDao.insert(searchParams)
-        }
+    fun getBooksOrderedByDate(): LiveData<List<Book>> {
+        return database.bookDao.getAllSortedByDate()
     }
-
 
     suspend fun insertBook(book: Book) {
         withContext(Dispatchers.IO) {
@@ -40,17 +39,37 @@ class BooksRepository(private val database: BooksDatabase) {
         }
     }
 
-
-    suspend fun clearHistory() {
+    suspend fun updateBook(book: Book) {
         withContext(Dispatchers.IO) {
-            database.searchParamsDao.deleteAll()
+            database.bookDao.update(book)
         }
     }
 
+    suspend fun deleteBook(book: Book) {
+        withContext(Dispatchers.IO) {
+            database.bookDao.delete(book)
+        }
+    }
 
     suspend fun clearSavedBooks() {
         withContext(Dispatchers.IO) {
             database.bookDao.deleteAll()
+        }
+    }
+
+    /**
+     * SearchParams (history items) DAO methods
+     */
+
+    suspend fun insertSearchParams(searchParams: SearchParams) {
+        withContext(Dispatchers.IO) {
+            database.searchParamsDao.insert(searchParams)
+        }
+    }
+
+    suspend fun clearHistory() {
+        withContext(Dispatchers.IO) {
+            database.searchParamsDao.deleteAll()
         }
     }
 }

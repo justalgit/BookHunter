@@ -7,11 +7,13 @@
         Hit the <b>search</b> button to find something interesting!</string>
     <string name="sort_by_date">Sort by date</string>
     <string name="sort_by_book_name">Sort by book name</string>
+    <string name="clear_books_list">Clear books list</string>
     <string name="show_history">History</string>
     <string name="show_about">About</string>
     <string name="sorted_by_date_message">Sorted by date of searching</string>
     <string name="sorted_by_book_name_message">Sorted by book name</string>
-    <string name="already_sorted_message">Your list already sorted!</string>
+    <string name="already_sorted_message">Your list already sorted</string>
+    <string name="books_cleared_message">All of your saved books was deleted!</string>
 
     <!--Search fragment-->
     <string name="search_query_hint">What do you want to find?</string>
@@ -26,15 +28,34 @@
 
     <!--Search result fragment-->
     <string name="result_done_button_text">Done</string>
+    <string name="empty_result_message">No books were found <b>:(</b></string>
+    <string name="loading_error_message">Something went wrong.<br/>
+        Check your internet connection!</string>
+    <string name="loading_message">Loading...</string>
 
     <!--History fragment-->
-    <string name="empty_history_message">You don\'t have any search history yet!</string>
+    <string name="empty_history_message">You don\'t have any search history!</string>
     <string name="clear_history">Clear history</string>
     <string name="history_cleared_message">All history records was deleted!</string>
     <string name="repeating_search_message">Repeating search with selected parameters...</string>
+    <string name="search_query"><b>Search query:</b> %s</string>
+    <string name="search_max_results"><b>Number of books:</b> %s</string>
 
     <!--Result book view item-->
-    <string name="book_link">URL: %s</string>
+    <string name="book_authors"><b>Authors:</b> %s</string>
+    <string name="book_link"><b>URL:</b> %s</string>
+    <string name="book_saving_date"><b>Saved on:</b> %s</string>
+
+    <!--Detail book fragment-->
+    <string name="save_book_changes">Save changes</string>
+    <string name="delete_book">Delete book</string>
+    <string name="book_updated_message">Successfully updated!</string>
+    <string name="book_deleted_message">Book was deleted!</string>
+    <string name="share_book">Share</string>
+    <string name="share_book_message">Look what I found in BookHunter:</string>
+    <string name="share_book_info">%s, written by %s</string>
+    <string name="share_book_url">URL: %s</string>
+    <string name="share_book_note">Note from me: %s</string>
 
     <!--About fragment-->
     <string name="about">This app uses open <b>Google Books API</b>, which gives you
@@ -42,8 +63,6 @@
         You can save books that you find useful or interesting for you, as well as take a look at the search history.<br/><br/>
         Nonetheless, you can also add the necessary notes for saved books and share your find with a friend.<br/><br/>
         <b>Enjoy!</b></string>
-    <string name="save">Save</string>
-    <string name="clear_books_list">Clear books list</string>
-    <string name="books_cleared_message">All of your saved books was deleted!</string>
+    <string name="book_note_hint">Type your note/description here</string>
 
 </resources>

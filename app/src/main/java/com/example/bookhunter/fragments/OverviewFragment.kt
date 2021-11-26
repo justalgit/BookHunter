@@ -38,7 +38,9 @@ class OverviewFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.savedBooksList.adapter = SavedBooksAdapter(SavedBooksAdapter.OnClickListener {
-            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+            this.findNavController().navigate(
+                OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it)
+            )
         })
 
         binding.savedBooksList.layoutManager = LinearLayoutManager(context)
