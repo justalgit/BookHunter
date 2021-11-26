@@ -1,12 +1,11 @@
 package com.example.bookhunter.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.bookhunter.database.Book
 import com.example.bookhunter.database.BooksDatabase
 import com.example.bookhunter.database.BooksRepository
+import kotlinx.coroutines.launch
 
 class OverviewViewModel(
     application: Application
@@ -14,7 +13,7 @@ class OverviewViewModel(
 
     private val booksRepository = BooksRepository(BooksDatabase.getInstance(application))
 
-    val savedBooks = booksRepository.savedBooks
+    var savedBooks: LiveData<List<Book>>
 
     private val _isNavigatingToSearch = MutableLiveData<Boolean>()
     val isNavigatingToSearch: LiveData<Boolean>
@@ -31,6 +30,44 @@ class OverviewViewModel(
     private val _isNavigatingToAbout = MutableLiveData<Boolean>()
     val isNavigatingToAbout: LiveData<Boolean>
         get() = _isNavigatingToAbout
+
+
+    private val _isSortedByBookDate = MutableLiveData<Boolean>()
+    val isSortedByBookDate: LiveData<Boolean>
+        get() = _isSortedByBookDate
+
+
+    init {
+        savedBooks = booksRepository.getBooksOrderedByDate()
+        _isSortedByBookDate.value = true
+    }
+
+
+    fun sortBooksByName(): Boolean {
+        if (isSortedByBookDate.value == true) {
+            savedBooks = booksRepository.getBooksOrderedByTitle()
+            _isSortedByBookDate.value = false
+            return true
+        }
+        return false
+    }
+
+
+    fun sortBooksByDate(): Boolean {
+        if (isSortedByBookDate.value == false) {
+            savedBooks = booksRepository.getBooksOrderedByDate()
+            _isSortedByBookDate.value = true
+            return true
+        }
+        return false
+    }
+
+
+    fun clearSavedBooks() {
+        viewModelScope.launch {
+            booksRepository.clearSavedBooks()
+        }
+    }
 
     /**
      * Navigation to search fragment

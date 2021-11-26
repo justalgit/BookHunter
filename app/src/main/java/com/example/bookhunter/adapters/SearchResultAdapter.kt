@@ -19,18 +19,16 @@ class SearchResultAdapter(private val onClickListener: OnClickListener) :
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val book = getItem(position)
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(book)
-        }
-        holder.bind(book)
+        holder.bind(book, onClickListener)
     }
 
 
     class BookViewHolder(private var binding: ResultBookViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(book: Book) {
+        fun bind(book: Book, onClickListener: OnClickListener) {
             binding.book = book
+            binding.clickListener = onClickListener
             binding.executePendingBindings()
         }
 

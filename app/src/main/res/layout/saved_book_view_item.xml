@@ -33,18 +33,9 @@
             android:id="@+id/saved_book_authors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:text='@{book.authors ?? "Authors not found"}'
             tools:text="Author one, Author two" />
-
-        <TextView
-            android:id="@+id/saved_book_link"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text='@{book.url ?? "URL not found"}'
-            android:autoLink="web"
-            tools:text="URL: google.com" />
 
     </LinearLayout>
 

@@ -6,12 +6,11 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
 import com.example.bookhunter.adapters.HistoryAdapter
-import com.example.bookhunter.adapters.SearchResultAdapter
 import com.example.bookhunter.databinding.FragmentHistoryBinding
-import com.example.bookhunter.databinding.FragmentSearchResultBinding
 import com.example.bookhunter.viewmodels.*
 import com.google.android.material.snackbar.Snackbar
 
@@ -36,7 +35,10 @@ class HistoryFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.historyList.adapter = HistoryAdapter(HistoryAdapter.OnClickListener {
-            Toast.makeText(context, it.searchQuery, Toast.LENGTH_SHORT).show()
+            showShortSnackbar(getString(R.string.repeating_search_message))
+            findNavController().navigate(
+                HistoryFragmentDirections.actionHistoryFragmentToSearchResultFragment(it)
+            )
         })
 
         binding.historyList.layoutManager = LinearLayoutManager(context)
@@ -56,14 +58,17 @@ class HistoryFragment : Fragment() {
         when (item.itemId) {
             R.id.clear_history -> {
                 viewModel.clearHistory()
-                Snackbar.make(
-                    requireActivity().findViewById(android.R.id.content),
-                    getString(R.string.history_cleared_message),
-                    Snackbar.LENGTH_SHORT
-                ).show()
+                showShortSnackbar(getString(R.string.history_cleared_message))
             }
         }
         return true
     }
 
+    private fun showShortSnackbar(message: String) {
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_SHORT
+        ).show()
+    }
 }

@@ -19,18 +19,16 @@ class HistoryAdapter(private val onClickListener: OnClickListener) :
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val historyRecord = getItem(position)
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(historyRecord)
-        }
-        holder.bind(historyRecord)
+        holder.bind(historyRecord, onClickListener)
     }
 
 
     class HistoryViewHolder(private var binding: HistoryViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(searchParams: SearchParams) {
+        fun bind(searchParams: SearchParams, onClickListener: OnClickListener) {
             binding.searchParams = searchParams
+            binding.clickListener = onClickListener
             binding.executePendingBindings()
         }
 

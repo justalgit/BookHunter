@@ -48,7 +48,7 @@ class SearchResultFragment : Fragment() {
                 viewModel.saveBook(it)
                 Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
-                    "${it.title} saved!",
+                    "\"${it.title}\" saved!",
                     Snackbar.LENGTH_SHORT
                 ).show()
             })

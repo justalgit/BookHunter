@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.bookhunter.fragments.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Book details"
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/action_detailFragment_to_overviewFragment"

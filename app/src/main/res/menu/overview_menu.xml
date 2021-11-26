@@ -10,6 +10,9 @@
         android:id="@+id/show_history"
         android:title="@string/show_history" />
     <item
+        android:id="@+id/clear_saved_books"
+        android:title="@string/clear_books_list" />
+    <item
         android:id="@+id/show_about"
         android:title="@string/show_about" />
 </menu>

@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Book::class, SearchParams::class], version = 3, exportSchema = false)
+@Database(entities = [Book::class, SearchParams::class], version = 4, exportSchema = false)
 abstract class BooksDatabase : RoomDatabase() {
 
     abstract val bookDao: BookDao

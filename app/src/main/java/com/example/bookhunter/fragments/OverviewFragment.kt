@@ -1,6 +1,7 @@
 package com.example.bookhunter.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -81,21 +82,44 @@ class OverviewFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         when (item.itemId) {
             R.id.show_history -> viewModel.navigateToHistory()
-            R.id.sort_by_date -> Snackbar.make(
-                requireActivity().findViewById(android.R.id.content),
-                getString(R.string.sorted_by_date_message),
-                Snackbar.LENGTH_SHORT
-            ).show()
-            R.id.sort_by_book_name -> Snackbar.make(
-                requireActivity().findViewById(android.R.id.content),
-                getString(R.string.sorted_by_book_name_message),
-                Snackbar.LENGTH_SHORT
-            ).show()
+
+            R.id.sort_by_date -> {
+                if (viewModel.sortBooksByDate()) {
+                    showShortSnackbar(getString(R.string.sorted_by_date_message))
+                }
+                else {
+                    showShortSnackbar(getString(R.string.already_sorted_message))
+                }
+            }
+
+            R.id.sort_by_book_name -> {
+                if (viewModel.sortBooksByName()) {
+                    showShortSnackbar(getString(R.string.sorted_by_book_name_message))
+                }
+                else {
+                    showShortSnackbar(getString(R.string.already_sorted_message))
+                }
+            }
+
+            R.id.clear_saved_books -> {
+                viewModel.clearSavedBooks()
+                showShortSnackbar(getString(R.string.books_cleared_message))
+            }
+
             R.id.show_about -> viewModel.navigateToAbout()
         }
+
         return true
     }
 
+    private fun showShortSnackbar(message: String) {
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_SHORT
+        ).show()
+    }
 }

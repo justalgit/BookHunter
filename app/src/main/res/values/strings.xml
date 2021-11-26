@@ -11,6 +11,7 @@
     <string name="show_about">About</string>
     <string name="sorted_by_date_message">Sorted by date of searching</string>
     <string name="sorted_by_book_name_message">Sorted by book name</string>
+    <string name="already_sorted_message">Your list already sorted!</string>
 
     <!--Search fragment-->
     <string name="search_query_hint">What do you want to find?</string>
@@ -30,6 +31,7 @@
     <string name="empty_history_message">You don\'t have any search history yet!</string>
     <string name="clear_history">Clear history</string>
     <string name="history_cleared_message">All history records was deleted!</string>
+    <string name="repeating_search_message">Repeating search with selected parameters...</string>
 
     <!--Result book view item-->
     <string name="book_link">URL: %s</string>
@@ -41,5 +43,7 @@
         Nonetheless, you can also add the necessary notes for saved books and share your find with a friend.<br/><br/>
         <b>Enjoy!</b></string>
     <string name="save">Save</string>
+    <string name="clear_books_list">Clear books list</string>
+    <string name="books_cleared_message">All of your saved books was deleted!</string>
 
 </resources>

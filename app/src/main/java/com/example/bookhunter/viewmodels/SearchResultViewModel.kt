@@ -9,6 +9,7 @@ import com.example.bookhunter.database.BooksRepository
 import com.example.bookhunter.database.SearchParams
 import com.example.bookhunter.network.BooksApi
 import com.example.bookhunter.network.asDatabaseModel
+import com.example.bookhunter.utils.currentDateAsString
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -57,6 +58,7 @@ class SearchResultViewModel(
 
     fun saveBook(book: Book) {
         viewModelScope.launch {
+            book.savingDate = currentDateAsString()
             booksRepository.insertBook(book)
         }
     }

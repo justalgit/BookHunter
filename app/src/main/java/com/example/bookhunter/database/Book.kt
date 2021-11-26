@@ -10,5 +10,6 @@ data class Book(
     var id: String,
     var title: String? = "No title",
     var authors: String? = "No authors",
-    var url: String? = "No url"
+    var url: String? = "No url",
+    var savingDate: String? = "No saving date"
 )

@@ -1,6 +1,7 @@
 package com.example.bookhunter.database
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.bookhunter.network.BooksApi
 import com.example.bookhunter.network.asDatabaseModel
@@ -9,8 +10,15 @@ import kotlinx.coroutines.withContext
 
 class BooksRepository(private val database: BooksDatabase) {
 
-    val savedBooks: LiveData<List<Book>> = database.bookDao.getAll()
     val historySearchParams: LiveData<List<SearchParams>> = database.searchParamsDao.getAll()
+
+    fun getBooksOrderedByDate(): LiveData<List<Book>> {
+        return database.bookDao.getAllSortedByDate()
+    }
+
+    fun getBooksOrderedByTitle(): LiveData<List<Book>> {
+        return database.bookDao.getAllSortedByTitle()
+    }
 
 
     suspend fun getBooksFromApi(searchParams: SearchParams) = BooksApi.retrofitService.getBooks(
@@ -36,6 +44,13 @@ class BooksRepository(private val database: BooksDatabase) {
     suspend fun clearHistory() {
         withContext(Dispatchers.IO) {
             database.searchParamsDao.deleteAll()
+        }
+    }
+
+
+    suspend fun clearSavedBooks() {
+        withContext(Dispatchers.IO) {
+            database.bookDao.deleteAll()
         }
     }
 }
