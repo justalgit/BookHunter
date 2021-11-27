@@ -55,12 +55,6 @@ class SearchResultViewModel(
                 else {
                     _loadingStatus.value = BooksApiStatus.DONE
                 }
-
-                Log.d(
-                    "SearchResultViewModel",
-                    "Current values in database: ${booksRepository.historySearchParams.value}"
-                )
-
             }
             catch (e: Exception) {
                 _books.value = ArrayList()
@@ -79,6 +73,7 @@ class SearchResultViewModel(
 
     private fun saveToHistory(searchParams: SearchParams) {
         viewModelScope.launch {
+            searchParams.date = currentDateAsString()
             booksRepository.insertSearchParams(searchParams)
         }
     }

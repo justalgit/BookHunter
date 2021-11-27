@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
 import com.example.bookhunter.adapters.SearchResultAdapter
@@ -53,7 +54,7 @@ class SearchResultFragment : Fragment() {
                 ).show()
             })
 
-            binding.booksList.layoutManager = LinearLayoutManager(context)
+            binding.booksList.layoutManager = GridLayoutManager(activity, 1)
 
             viewModel.isNavigatingToOverview.observe(viewLifecycleOwner, Observer {
                 if (it) {

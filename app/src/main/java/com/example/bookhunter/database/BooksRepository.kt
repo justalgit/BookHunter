@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 
 class BooksRepository(private val database: BooksDatabase) {
 
-    val historySearchParams: LiveData<List<SearchParams>> = database.searchParamsDao.getAll()
+    private val history = database.searchParamsDao.getAll()
 
     /**
      * Book fetching from remote API
@@ -60,6 +60,10 @@ class BooksRepository(private val database: BooksDatabase) {
     /**
      * SearchParams (history items) DAO methods
      */
+
+    fun getHistory(): LiveData<List<SearchParams>> {
+        return history
+    }
 
     suspend fun insertSearchParams(searchParams: SearchParams) {
         withContext(Dispatchers.IO) {

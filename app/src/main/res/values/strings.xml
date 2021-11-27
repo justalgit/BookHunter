@@ -14,6 +14,7 @@
     <string name="sorted_by_book_name_message">Sorted by book name</string>
     <string name="already_sorted_message">Your list already sorted</string>
     <string name="books_cleared_message">All of your saved books was deleted!</string>
+    <string name="header_text">Recently saved</string>
 
     <!--Search fragment-->
     <string name="search_query_hint">What do you want to find?</string>
@@ -47,22 +48,26 @@
     <string name="book_saving_date"><b>Saved on:</b> %s</string>
 
     <!--Detail book fragment-->
+    <string name="book_note_hint">Type your note/description here</string>
     <string name="save_book_changes">Save changes</string>
     <string name="delete_book">Delete book</string>
     <string name="book_updated_message">Successfully updated!</string>
     <string name="book_deleted_message">Book was deleted!</string>
     <string name="share_book">Share</string>
-    <string name="share_book_message">Look what I found in BookHunter:</string>
-    <string name="share_book_info">%s, written by %s</string>
-    <string name="share_book_url">URL: %s</string>
-    <string name="share_book_note">Note from me: %s</string>
+    <string name="share_book_message">Look what I found in BookHunter: \"%s\", available at: %s</string>
 
     <!--About fragment-->
     <string name="about">This app uses open <b>Google Books API</b>, which gives you
-        a set of books which contain the words, names, or terms you need.<br/><br/>
-        You can save books that you find useful or interesting for you, as well as take a look at the search history.<br/><br/>
-        Nonetheless, you can also add the necessary notes for saved books and share your find with a friend.<br/><br/>
-        <b>Enjoy!</b></string>
-    <string name="book_note_hint">Type your note/description here</string>
+        a set of books which contain the words, names, or terms you need.
+        \n\nYou can save books that you find useful or interesting for you just by clicking on it,
+        as well as take a look at the search history.
+        \n\nNonetheless, you can also add the necessary notes for saved books and share your find with a friend.
+        \n\n<b>Enjoy!</b></string>
+    <string name="alert_yes">Yes</string>
+    <string name="alert_no">No</string>
+    <string name="clear_books_alert_message">Are you sure you want to delete all of your saved books?</string>
+    <string name="clear_books_alert_title">Clear saved books</string>
+    <string name="clear_history_alert_title">Clearing history</string>
+    <string name="clear_history_alert_message">Are you sure you want to delete all of your search history?</string>
 
 </resources>

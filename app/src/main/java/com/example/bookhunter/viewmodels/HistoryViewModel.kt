@@ -13,12 +13,18 @@ class HistoryViewModel(
 
     private val booksRepository = BooksRepository(BooksDatabase.getInstance(application))
 
-    val history = booksRepository.historySearchParams
+    val history = booksRepository.getHistory()
 
-    fun clearHistory() {
-        viewModelScope.launch {
-            booksRepository.clearHistory()
+    private val isHistoryEmpty = history.value?.isEmpty() == true
+
+    fun clearHistory(): Boolean {
+        if (!isHistoryEmpty) {
+            viewModelScope.launch {
+                booksRepository.clearHistory()
+            }
+            return true
         }
+        return false
     }
 
 }

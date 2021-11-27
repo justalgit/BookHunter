@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
 import com.example.bookhunter.adapters.HistoryAdapter
@@ -35,17 +39,42 @@ class HistoryFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.historyList.adapter = HistoryAdapter(HistoryAdapter.OnClickListener {
-            showShortSnackbar(getString(R.string.repeating_search_message))
+            Toast.makeText(
+                context, getString(R.string.repeating_search_message), Toast.LENGTH_SHORT
+            ).show()
             findNavController().navigate(
                 HistoryFragmentDirections.actionHistoryFragmentToSearchResultFragment(it)
             )
         })
 
-        binding.historyList.layoutManager = LinearLayoutManager(context)
+        binding.historyList.layoutManager = GridLayoutManager(activity, 1)
 
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+
+    private fun historyDeletingAlert(title: String, message: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        with(builder)
+        {
+            setTitle(title)
+            setMessage(message)
+
+            setPositiveButton(getString(R.string.alert_yes)) { _, _ ->
+                viewModel.clearHistory()
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.books_cleared_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+
+            setNegativeButton(getString(R.string.alert_no), null)
+
+            show()
+        }
     }
 
 
@@ -57,18 +86,13 @@ class HistoryFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.clear_history -> {
-                viewModel.clearHistory()
-                showShortSnackbar(getString(R.string.history_cleared_message))
+                historyDeletingAlert(
+                    getString(R.string.clear_history_alert_title),
+                    getString(R.string.clear_history_alert_message)
+                )
             }
         }
-        return true
-    }
-
-    private fun showShortSnackbar(message: String) {
-        Snackbar.make(
-            requireActivity().findViewById(android.R.id.content),
-            message,
-            Snackbar.LENGTH_SHORT
-        ).show()
+        return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
     }
 }

@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.bookhunter.R
 import com.example.bookhunter.databinding.FragmentDetailBinding
 import com.example.bookhunter.databinding.FragmentOverviewBinding
@@ -81,7 +83,8 @@ class DetailFragment : Fragment() {
         when(item.itemId) {
             R.id.share_book -> shareBook()
         }
-        return true
+        return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
     }
 
 
@@ -97,10 +100,11 @@ class DetailFragment : Fragment() {
         // TODO: fix extras for explicit intent
 
         shareIntent.setType("text/plain")
-            .putExtra("Message", getString(R.string.share_book_message))
-            .putExtra("Info", getString(R.string.share_book_info, book?.title, book?.authors))
-            .putExtra("URL", getString(R.string.share_book_url, book?.url))
-            .putExtra("Note", getString(R.string.share_book_note, book?.note))
+            .putExtra(Intent.EXTRA_TEXT, getString(
+                R.string.share_book_message,
+                book?.title,
+                book?.url
+            ))
 
         Log.d("Detail fragment", shareIntent.extras.toString())
         return shareIntent

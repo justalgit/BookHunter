@@ -76,7 +76,9 @@
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/action_detailFragment_to_overviewFragment"
-            app:destination="@id/overviewFragment" />
+            app:destination="@id/overviewFragment"
+            app:popUpTo="@id/overviewFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="selectedBook"
             app:argType="com.example.bookhunter.database.Book" />

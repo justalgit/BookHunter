@@ -15,37 +15,51 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:onClick="@{() -> clickListener.onClick(searchParams)}">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/query_date"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:text='@{searchParams.date}'
-            tools:text="Query date" />
+            app:strokeColor="@color/stroke_color"
+            app:cardElevation="10dp"
+            android:layout_margin="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="@{() -> clickListener.onClick(searchParams)}">
 
-        <TextView
-            android:id="@+id/query_string"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text='@{@string/search_query(searchParams.searchQuery)}'
-            tools:text="Search query" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-        <TextView
-            android:id="@+id/query_max_results"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text='@{@string/search_max_results(Integer.toString(searchParams.maxResults))}'
-            tools:text="Max results: 10" />
+                <TextView
+                    android:id="@+id/query_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:text='@{searchParams.date}'
+                    tools:text="Query date" />
+
+                <TextView
+                    android:id="@+id/query_string"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text='@{@string/search_query(searchParams.searchQuery)}'
+                    tools:text="Search query" />
+
+                <TextView
+                    android:id="@+id/query_max_results"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text='@{@string/search_max_results(Integer.toString(searchParams.maxResults))}'
+                    tools:text="Max results: 10" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 

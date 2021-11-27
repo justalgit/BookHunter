@@ -13,8 +13,11 @@ class OverviewViewModel(
 
     private val booksRepository = BooksRepository(BooksDatabase.getInstance(application))
 
-    var savedBooks: LiveData<List<Book>>
+    private val _savedBooks = MediatorLiveData<List<Book>>()
+    val savedBooks: LiveData<List<Book>>
+        get() = _savedBooks
 
+    private val isBooksListEmpty = savedBooks.value?.isEmpty() == true
 
     private val _isNavigatingToSearch = MutableLiveData<Boolean>()
     val isNavigatingToSearch: LiveData<Boolean>
@@ -35,14 +38,18 @@ class OverviewViewModel(
 
 
     init {
-        savedBooks = booksRepository.getBooksOrderedByDate()
+        _savedBooks.addSource(booksRepository.getBooksOrderedByDate()) {
+            _savedBooks.value = it
+        }
         _isSortedByBookDate.value = true
     }
 
 
     fun sortBooksByName(): Boolean {
         if (isSortedByBookDate.value == true) {
-            savedBooks = booksRepository.getBooksOrderedByTitle()
+            _savedBooks.addSource(booksRepository.getBooksOrderedByTitle()) {
+                _savedBooks.value = it
+            }
             _isSortedByBookDate.value = false
             return true
         }
@@ -52,7 +59,10 @@ class OverviewViewModel(
 
     fun sortBooksByDate(): Boolean {
         if (isSortedByBookDate.value == false) {
-            savedBooks = booksRepository.getBooksOrderedByDate()
+            _savedBooks.addSource(booksRepository.getBooksOrderedByDate()) {
+                _savedBooks.value = it
+            }
+            _savedBooks.value = savedBooks.value
             _isSortedByBookDate.value = true
             return true
         }

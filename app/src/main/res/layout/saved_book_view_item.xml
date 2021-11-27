@@ -15,29 +15,43 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:onClick="@{() -> clickListener.onClick(book)}">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/saved_book_name"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:text='@{book.title ?? "Title not found"}'
-            tools:text="Book name" />
+            app:strokeColor="@color/stroke_color"
+            app:cardElevation="10dp"
+            android:layout_margin="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="@{() -> clickListener.onClick(book)}">
 
-        <TextView
-            android:id="@+id/saved_book_authors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text='@{book.authors ?? "Authors not found"}'
-            tools:text="Author one, Author two" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/saved_book_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:text='@{book.title ?? "Title not found"}'
+                    tools:text="Book name" />
+
+                <TextView
+                    android:id="@+id/saved_book_authors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text='@{book.authors ?? "Authors not found"}'
+                    tools:text="Author one, Author two" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
