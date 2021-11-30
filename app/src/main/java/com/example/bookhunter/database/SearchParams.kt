@@ -11,6 +11,7 @@ import kotlinx.android.parcel.Parcelize
 data class SearchParams(
     var searchQuery: String?,
     var maxResults: Int?,
+    // TODO: change the format of date storing
     var date: String?,
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -84,14 +85,29 @@ class HistoryFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        var noHistory = true
+
+        viewModel.history.observe(this, Observer {
+            noHistory = it.isNullOrEmpty()
+        })
+
         when (item.itemId) {
             R.id.clear_history -> {
-                historyDeletingAlert(
-                    getString(R.string.clear_history_alert_title),
-                    getString(R.string.clear_history_alert_message)
-                )
+                if (noHistory || noHistory == null) {
+                    Toast.makeText(
+                        context, getString(R.string.nothing_to_delete), Toast.LENGTH_SHORT
+                    ).show()
+                }
+                else {
+                    historyDeletingAlert(
+                        getString(R.string.clear_history_alert_title),
+                        getString(R.string.clear_history_alert_message)
+                    )
+                }
             }
         }
+
         return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }

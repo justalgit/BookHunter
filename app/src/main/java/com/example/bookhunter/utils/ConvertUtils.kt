@@ -10,6 +10,7 @@ fun isMaxResultsValid(stringNum: String): Boolean {
     }
 }
 
+// TODO: change current date getter
 fun currentDateAsString(): String {
     val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
     return sdf.format(Date())

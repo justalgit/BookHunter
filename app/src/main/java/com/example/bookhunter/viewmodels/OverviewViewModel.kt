@@ -17,8 +17,6 @@ class OverviewViewModel(
     val savedBooks: LiveData<List<Book>>
         get() = _savedBooks
 
-    private val isBooksListEmpty = savedBooks.value?.isEmpty() == true
-
     private val _isNavigatingToSearch = MutableLiveData<Boolean>()
     val isNavigatingToSearch: LiveData<Boolean>
         get() = _isNavigatingToSearch
@@ -35,7 +33,6 @@ class OverviewViewModel(
     private val _isSortedByBookDate = MutableLiveData<Boolean>()
     val isSortedByBookDate: LiveData<Boolean>
         get() = _isSortedByBookDate
-
 
     init {
         _savedBooks.addSource(booksRepository.getBooksOrderedByDate()) {

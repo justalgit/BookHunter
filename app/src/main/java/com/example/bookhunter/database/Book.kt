@@ -14,6 +14,7 @@ data class Book(
     var title: String?,
     var authors: String?,
     var url: String?,
+    // TODO: change the format of date storing
     var savingDate: String? = "No saving date",
     var note: String? = null
 ) : Parcelable

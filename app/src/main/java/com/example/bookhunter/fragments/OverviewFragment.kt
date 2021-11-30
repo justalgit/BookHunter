@@ -56,7 +56,6 @@ class OverviewFragment : Fragment() {
             }
         })
 
-
         viewModel.isNavigatingToHistory.observe(viewLifecycleOwner, Observer {
             if (it) {
                 this.findNavController().navigate(
@@ -75,10 +74,6 @@ class OverviewFragment : Fragment() {
             }
         })
 
-        viewModel.savedBooks.observe(viewLifecycleOwner, Observer {
-            Log.d("Overview fragment", "savedBooks was changed")
-        })
-
         setHasOptionsMenu(true)
 
         return binding.root
@@ -92,32 +87,53 @@ class OverviewFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
+        var noSavedBooks = true
+
+        viewModel.savedBooks!!.observe(this, Observer {
+            noSavedBooks = it.isNullOrEmpty()
+        })
+
         when (item.itemId) {
             R.id.show_history -> viewModel.navigateToHistory()
 
             R.id.sort_by_date -> {
-                if (viewModel.sortBooksByDate()) {
-                    showShortToast(getString(R.string.sorted_by_date_message))
-                }
-                else {
-                    showShortToast(getString(R.string.already_sorted_message))
+                when {
+                    noSavedBooks || noSavedBooks == null -> {
+                        showShortToast(getString(R.string.nothing_to_sort))
+                    }
+                    viewModel.sortBooksByDate() -> {
+                        showShortToast(getString(R.string.sorted_by_date_message))
+                    }
+                    else -> {
+                        showShortToast(getString(R.string.already_sorted_message))
+                    }
                 }
             }
 
             R.id.sort_by_book_name -> {
-                if (viewModel.sortBooksByName()) {
-                    showShortToast(getString(R.string.sorted_by_book_name_message))
-                }
-                else {
-                    showShortToast(getString(R.string.already_sorted_message))
+                when {
+                    noSavedBooks || noSavedBooks == null -> {
+                        showShortToast(getString(R.string.nothing_to_sort))
+                    }
+                    viewModel.sortBooksByName() -> {
+                        showShortToast(getString(R.string.sorted_by_book_name_message))
+                    }
+                    else -> {
+                        showShortToast(getString(R.string.already_sorted_message))
+                    }
                 }
             }
 
             R.id.clear_saved_books -> {
-                booksDeletingAlert(
-                    getString(R.string.clear_books_alert_title),
-                    getString(R.string.clear_books_alert_message)
-                )
+                if (noSavedBooks || noSavedBooks == null) {
+                    showShortToast(getString(R.string.nothing_to_delete))
+                }
+                else {
+                    booksDeletingAlert(
+                        getString(R.string.clear_books_alert_title),
+                        getString(R.string.clear_books_alert_message)
+                    )
+                }
             }
 
             R.id.show_about -> viewModel.navigateToAbout()
@@ -157,6 +173,4 @@ class OverviewFragment : Fragment() {
     private fun showShortToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
-
-
 }

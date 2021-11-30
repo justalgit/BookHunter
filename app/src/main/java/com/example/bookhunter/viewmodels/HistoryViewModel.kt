@@ -1,8 +1,7 @@
 package com.example.bookhunter.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.bookhunter.database.BooksDatabase
 import com.example.bookhunter.database.BooksRepository
 import kotlinx.coroutines.launch
@@ -15,16 +14,9 @@ class HistoryViewModel(
 
     val history = booksRepository.getHistory()
 
-    private val isHistoryEmpty = history.value?.isEmpty() == true
-
-    fun clearHistory(): Boolean {
-        if (!isHistoryEmpty) {
-            viewModelScope.launch {
-                booksRepository.clearHistory()
-            }
-            return true
+    fun clearHistory() {
+        viewModelScope.launch {
+            booksRepository.clearHistory()
         }
-        return false
     }
-
 }

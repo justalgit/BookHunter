@@ -63,11 +63,15 @@
         as well as take a look at the search history.
         \n\nNonetheless, you can also add the necessary notes for saved books and share your find with a friend.
         \n\n<b>Enjoy!</b></string>
+
+    <!--String resources for info messages-->
     <string name="alert_yes">Yes</string>
     <string name="alert_no">No</string>
     <string name="clear_books_alert_message">Are you sure you want to delete all of your saved books?</string>
     <string name="clear_books_alert_title">Clear saved books</string>
-    <string name="clear_history_alert_title">Clearing history</string>
     <string name="clear_history_alert_message">Are you sure you want to delete all of your search history?</string>
+    <string name="clear_history_alert_title">Clearing history</string>
+    <string name="nothing_to_delete">Nothing to delete!</string>
+    <string name="nothing_to_sort">Nothing to sort!</string>
 
 </resources>
