@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:text='@{searchParams.date}'
+                    android:text='@{searchParams.dateAsString()}'
                     tools:text="Query date" />
 
                 <TextView

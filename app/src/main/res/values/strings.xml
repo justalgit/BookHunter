@@ -33,6 +33,7 @@
     <string name="loading_error_message">Something went wrong.<br/>
         Check your internet connection!</string>
     <string name="loading_message">Loading...</string>
+    <string name="book_saved">\"%s\" saved!</string>
 
     <!--History fragment-->
     <string name="empty_history_message">You don\'t have any search history!</string>
@@ -57,11 +58,11 @@
     <string name="share_book_message">Look what I found in BookHunter: \"%s\", available at: %s</string>
 
     <!--About fragment-->
-    <string name="about">This app uses open <b>Google Books API</b>, which gives you
-        a set of books which contain the words, names, or terms you need.
-        \n\nYou can save books that you find useful or interesting for you just by clicking on it,
+    <string name="about">This app uses open <b>Google Books API</b> that gives you
+        a set of books which contain the words, names, or terms required.
+        \n\nYou can save books that can be useful or interesting for you just by clicking on it,
         as well as take a look at the search history.
-        \n\nNonetheless, you can also add the necessary notes for saved books and share your find with a friend.
+        \n\nNonetheless, you can also add the necessary notes for saved books and share that findings with a friend.
         \n\n<b>Enjoy!</b></string>
 
     <!--String resources for info messages-->

@@ -7,9 +7,10 @@ import com.example.bookhunter.database.Book
 import com.example.bookhunter.database.BooksDatabase
 import com.example.bookhunter.database.BooksRepository
 import com.example.bookhunter.database.SearchParams
-import com.example.bookhunter.utils.currentDateAsString
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
 
 enum class BooksApiStatus { LOADING, EMPTY_RESULT, ERROR, DONE }
 
@@ -66,14 +67,14 @@ class SearchResultViewModel(
 
     fun saveBook(book: Book) {
         viewModelScope.launch {
-            book.savingDate = currentDateAsString()
+            book.savingDate = Calendar.getInstance().time
             booksRepository.insertBook(book)
         }
     }
 
     private fun saveToHistory(searchParams: SearchParams) {
         viewModelScope.launch {
-            searchParams.date = currentDateAsString()
+            searchParams.date = Calendar.getInstance().time
             booksRepository.insertSearchParams(searchParams)
         }
     }

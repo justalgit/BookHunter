@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bookhunter.database.SearchParams
-import com.example.bookhunter.utils.currentDateAsString
 import com.example.bookhunter.utils.isMaxResultsValid
+import java.util.*
 
 class SearchViewModel() : ViewModel() {
 
@@ -32,7 +32,7 @@ class SearchViewModel() : ViewModel() {
             val currentSearchParams = SearchParams(
                 searchQuery.value,
                 maxResults.value?.toInt(),
-                currentDateAsString()
+                Calendar.getInstance().time
             )
 
             _isNavigatingToResult.value = currentSearchParams

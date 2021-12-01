@@ -11,15 +11,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
 import com.example.bookhunter.adapters.SearchResultAdapter
 import com.example.bookhunter.databinding.FragmentSearchResultBinding
-import com.example.bookhunter.viewmodels.HistoryViewModel
-import com.example.bookhunter.viewmodels.HistoryViewModelFactory
 import com.example.bookhunter.viewmodels.SearchResultViewModel
 import com.example.bookhunter.viewmodels.SearchResultViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 
 
 class SearchResultFragment : Fragment() {
@@ -47,10 +43,8 @@ class SearchResultFragment : Fragment() {
 
             binding.booksList.adapter = SearchResultAdapter(SearchResultAdapter.OnClickListener {
                 viewModel.saveBook(it)
-                Snackbar.make(
-                    requireActivity().findViewById(android.R.id.content),
-                    "\"${it.title}\" saved!",
-                    Snackbar.LENGTH_SHORT
+                Toast.makeText(
+                    context, getString(R.string.book_saved, it.title), Toast.LENGTH_SHORT
                 ).show()
             })
 
