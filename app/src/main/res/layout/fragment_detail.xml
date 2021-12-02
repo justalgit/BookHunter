@@ -101,16 +101,6 @@
                     android:layout_margin="16dp"
                     android:onClick="@{() -> viewModel.deleteBook(viewModel.selectedBook)}"/>
 
-                <Button
-                    android:id="@+id/save_book_changes_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:text="@string/save_book_changes"
-                    android:layout_margin="16dp"
-                    android:onClick="@{() -> viewModel.updateBook(viewModel.selectedBook)}"/>
-
             </LinearLayout>
 
         </LinearLayout>

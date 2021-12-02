@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -56,11 +57,9 @@ class DetailFragment : Fragment() {
             }
         })
 
-        viewModel.isBookUpdated.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                showShortToast(getString(R.string.book_updated_message))
-            }
-        })
+       binding.selectedBookNote.addTextChangedListener {
+           viewModel.updateBook(viewModel.selectedBook.value!!)
+       }
 
         viewModel.isBookDeleted.observe(viewLifecycleOwner, Observer {
             if (it) {
