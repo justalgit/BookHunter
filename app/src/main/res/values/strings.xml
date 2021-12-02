@@ -8,8 +8,6 @@
     <string name="sort_by_date">Sort by date</string>
     <string name="sort_by_book_name">Sort by book name</string>
     <string name="clear_books_list">Clear books list</string>
-    <string name="show_history">History</string>
-    <string name="show_about">About</string>
     <string name="sorted_by_date_message">Sorted by date of searching</string>
     <string name="sorted_by_book_name_message">Sorted by book name</string>
     <string name="already_sorted_message">Your list already sorted</string>
@@ -58,7 +56,7 @@
     <string name="share_book_message">Look what I found in BookHunter: \"%s\", available at: %s</string>
 
     <!--About fragment-->
-    <string name="about">This app uses open <b>Google Books API</b> that gives you
+    <string name="about_message">This app uses open <b>Google Books API</b> that gives you
         a set of books which contain the words, names, or terms required.
         \n\nYou can save books that can be useful or interesting for you just by clicking on it,
         as well as take a look at the search history.
@@ -74,5 +72,13 @@
     <string name="clear_history_alert_title">Clearing history</string>
     <string name="nothing_to_delete">Nothing to delete!</string>
     <string name="nothing_to_sort">Nothing to sort!</string>
+
+    <!--Navigation drawer menu strings-->
+    <string name="overview">Overview</string>
+    <string name="search">Search</string>
+    <string name="history">History</string>
+    <string name="about">About</string>
+    <string name="nothing_saved_alert_title">No books were saved</string>
+    <string name="nothing_saved_alert_message">Continue without saving any of the books (hint: click on item to save it)?</string>
 
 </resources>

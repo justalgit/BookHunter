@@ -21,7 +21,7 @@ class AboutFragment : Fragment() {
         val binding: FragmentAboutBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_about, container, false)
 
-        binding.bookHunterDescription.text = getText(R.string.about)
+        binding.bookHunterDescription.text = getText(R.string.about_message)
 
         return binding.root
     }

@@ -1,11 +1,13 @@
 package com.example.bookhunter.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,8 +43,11 @@ class SearchResultFragment : Fragment() {
             binding.lifecycleOwner = this
             binding.viewModel = viewModel
 
+            var isAnyBookSaved = false
+
             binding.booksList.adapter = SearchResultAdapter(SearchResultAdapter.OnClickListener {
                 viewModel.saveBook(it)
+                isAnyBookSaved = true
                 Toast.makeText(
                     context, getString(R.string.book_saved, it.title), Toast.LENGTH_SHORT
                 ).show()
@@ -52,14 +57,45 @@ class SearchResultFragment : Fragment() {
 
             viewModel.isNavigatingToOverview.observe(viewLifecycleOwner, Observer {
                 if (it) {
-                    this.findNavController().navigate(
-                        SearchResultFragmentDirections.actionSearchResultFragmentToOverviewFragment()
-                    )
-                    viewModel.navigateToOverviewDone()
+                    if (!isAnyBookSaved) {
+                        noBooksSavedAlert(
+                            this,
+                            getString(R.string.nothing_saved_alert_title),
+                            getString(R.string.nothing_saved_alert_message)
+                        )
+                    }
+                    else {
+                        navigateToOverview(this)
+                    }
                 }
             })
 
             return binding.root
         }
 
+
+    private fun noBooksSavedAlert(fragment: SearchResultFragment, title: String, message: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        with(builder)
+        {
+            setTitle(title)
+            setMessage(message)
+
+            setPositiveButton(getString(R.string.alert_yes)) { _, _ ->
+                navigateToOverview(fragment)
+            }
+
+            setNegativeButton(getString(R.string.alert_no), null)
+
+            show()
+        }
+    }
+
+
+    private fun navigateToOverview(fragment: SearchResultFragment) {
+        fragment.findNavController().navigate(
+            SearchResultFragmentDirections.actionSearchResultFragmentToOverviewFragment()
+        )
+        viewModel.navigateToOverviewDone()
+    }
 }

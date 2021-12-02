@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -14,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 import com.example.bookhunter.R
 import com.example.bookhunter.databinding.FragmentDetailBinding
 import com.example.bookhunter.databinding.FragmentOverviewBinding
+import com.example.bookhunter.utils.hideKeyboard
 import com.example.bookhunter.viewmodels.DetailViewModel
 import com.example.bookhunter.viewmodels.DetailViewModelFactory
 import com.example.bookhunter.viewmodels.OverviewViewModel
@@ -46,6 +48,7 @@ class DetailFragment : Fragment() {
 
         viewModel.isNavigatingToOverview.observe(viewLifecycleOwner, Observer {
             if (it) {
+                this.hideKeyboard()
                 findNavController().navigate(
                     DetailFragmentDirections.actionDetailFragmentToOverviewFragment()
                 )
@@ -55,13 +58,13 @@ class DetailFragment : Fragment() {
 
         viewModel.isBookUpdated.observe(viewLifecycleOwner, Observer {
             if (it) {
-                showShortSnackbar(getString(R.string.book_updated_message))
+                showShortToast(getString(R.string.book_updated_message))
             }
         })
 
         viewModel.isBookDeleted.observe(viewLifecycleOwner, Observer {
             if (it) {
-                showShortSnackbar(getString(R.string.book_deleted_message))
+                showShortToast(getString(R.string.book_deleted_message))
             }
         })
 
@@ -111,11 +114,7 @@ class DetailFragment : Fragment() {
     }
 
 
-    private fun showShortSnackbar(message: String) {
-        Snackbar.make(
-            requireActivity().findViewById(android.R.id.content),
-            message,
-            Snackbar.LENGTH_SHORT
-        ).show()
+    private fun showShortToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }

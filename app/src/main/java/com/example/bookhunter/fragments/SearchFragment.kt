@@ -1,10 +1,15 @@
 package com.example.bookhunter.fragments
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +19,8 @@ import com.example.bookhunter.databinding.FragmentSearchBinding
 import com.example.bookhunter.viewmodels.SearchViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.example.bookhunter.database.SearchParams
+import androidx.core.content.ContextCompat.getSystemService
+import com.example.bookhunter.utils.hideKeyboard
 
 
 class SearchFragment : Fragment() {
@@ -45,6 +52,7 @@ class SearchFragment : Fragment() {
 
         viewModel.isNavigatingToResult.observe(viewLifecycleOwner, Observer {
             if (it != null) {
+                this.hideKeyboard()
                 this.findNavController().navigate(
                     SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(it)
                 )
@@ -54,5 +62,4 @@ class SearchFragment : Fragment() {
 
         return binding.root
     }
-
 }

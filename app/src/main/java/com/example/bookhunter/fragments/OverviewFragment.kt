@@ -1,7 +1,6 @@
 package com.example.bookhunter.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -9,15 +8,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookhunter.R
 import com.example.bookhunter.adapters.SavedBooksAdapter
 import com.example.bookhunter.databinding.FragmentOverviewBinding
 import com.example.bookhunter.viewmodels.OverviewViewModel
 import com.example.bookhunter.viewmodels.OverviewViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 
 
 class OverviewFragment : Fragment() {
@@ -94,7 +93,6 @@ class OverviewFragment : Fragment() {
         })
 
         when (item.itemId) {
-            R.id.show_history -> viewModel.navigateToHistory()
 
             R.id.sort_by_date -> {
                 when {
@@ -136,10 +134,10 @@ class OverviewFragment : Fragment() {
                 }
             }
 
-            R.id.show_about -> viewModel.navigateToAbout()
         }
 
-        return true
+        return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
     }
 
 
@@ -152,22 +150,13 @@ class OverviewFragment : Fragment() {
 
             setPositiveButton(getString(R.string.alert_yes)) { _, _ ->
                 viewModel.clearSavedBooks()
-                showShortSnackbar(getString(R.string.books_cleared_message))
+                showShortToast(getString(R.string.books_cleared_message))
             }
 
             setNegativeButton(getString(R.string.alert_no), null)
 
             show()
         }
-    }
-
-
-    private fun showShortSnackbar(message: String) {
-        Snackbar.make(
-            requireActivity().findViewById(android.R.id.content),
-            message,
-            Snackbar.LENGTH_SHORT
-        ).show()
     }
 
     private fun showShortToast(message: String) {

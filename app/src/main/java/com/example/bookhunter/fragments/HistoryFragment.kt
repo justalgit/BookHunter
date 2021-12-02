@@ -65,10 +65,8 @@ class HistoryFragment : Fragment() {
 
             setPositiveButton(getString(R.string.alert_yes)) { _, _ ->
                 viewModel.clearHistory()
-                Snackbar.make(
-                    requireActivity().findViewById(android.R.id.content),
-                    getString(R.string.books_cleared_message),
-                    Snackbar.LENGTH_SHORT
+                Toast.makeText(
+                    context, getString(R.string.books_cleared_message), Toast.LENGTH_SHORT
                 ).show()
             }
 

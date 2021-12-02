@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_grey">#FAFAFA</color>
     <color name="stroke_color">#222222</color>
+    <color name="red">#D50000</color>
+    <color name="dark_red">#C00000</color>
+    <color name="cyan">#00DEE6</color>
+    <color name="dark_cyan">#00C4D1</color>
 </resources>

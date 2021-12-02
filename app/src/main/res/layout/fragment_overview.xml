@@ -24,12 +24,11 @@
                 android:id="@+id/header_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/purple_500"
+                android:background="@color/dark_red"
                 android:padding="16dp"
-                android:textColor="@color/white"
                 android:text="@string/header_text"
+                android:textColor="@color/white"
                 android:textSize="26sp"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
