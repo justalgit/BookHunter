@@ -44,7 +44,6 @@ class DetailViewModel(
             booksRepository.updateBook(book)
         }
         _isBookUpdated.value = true
-        navigateToOverview()
     }
 
     fun deleteBook(book: Book) {
