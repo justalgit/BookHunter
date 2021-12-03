@@ -25,13 +25,13 @@ class DetailViewModel(
     val isNavigatingToOverview: LiveData<Boolean>
         get() = _isNavigatingToOverview
 
-    private val _isBookUpdated = MutableLiveData<Boolean>()
-    val isBookUpdated: LiveData<Boolean>
-        get() = _isBookUpdated
-
     private val _isBookDeleted = MutableLiveData<Boolean>()
     val isBookDeleted: LiveData<Boolean>
         get() = _isBookDeleted
+
+    private val _isAttemptedToDelete = MutableLiveData<Boolean>()
+    val isAttemptedToDelete: LiveData<Boolean>
+        get() = _isAttemptedToDelete
 
 
     init {
@@ -43,9 +43,8 @@ class DetailViewModel(
         viewModelScope.launch {
             booksRepository.updateBook(book)
         }
-        _isBookUpdated.value = true
     }
-
+    
     fun deleteBook(book: Book) {
         viewModelScope.launch {
             booksRepository.deleteBook(book)
@@ -54,6 +53,9 @@ class DetailViewModel(
         navigateToOverview()
     }
 
+    fun onDelete() {
+        _isAttemptedToDelete.value = true
+    }
 
     fun navigateToOverview() {
         _isNavigatingToOverview.value = true
@@ -62,6 +64,6 @@ class DetailViewModel(
     fun navigateToOverviewDone() {
         _isNavigatingToOverview.value = false
         _isBookDeleted.value = false
-        _isBookUpdated.value = false
+        _isAttemptedToDelete.value = false
     }
 }

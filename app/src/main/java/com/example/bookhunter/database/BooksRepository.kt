@@ -8,6 +8,8 @@ import com.example.bookhunter.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+private const val DEFAULT_MAX_RESULTS = 40
+
 class BooksRepository(private val database: BooksDatabase) {
 
     private val history = database.searchParamsDao.getAll()
@@ -18,7 +20,7 @@ class BooksRepository(private val database: BooksDatabase) {
 
     suspend fun getBooksFromApi(searchParams: SearchParams) = BooksApi.retrofitService.getBooks(
         searchParams.searchQuery,
-        searchParams.maxResults
+        DEFAULT_MAX_RESULTS
     ).asDatabaseModel()
 
     /**

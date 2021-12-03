@@ -45,17 +45,9 @@
                     android:id="@+id/query_string"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:text='@{@string/search_query(searchParams.searchQuery)}'
                     tools:text="Search query" />
-
-                <TextView
-                    android:id="@+id/query_max_results"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text='@{@string/search_max_results(Integer.toString(searchParams.maxResults))}'
-                    tools:text="Max results: 10" />
 
             </LinearLayout>
 

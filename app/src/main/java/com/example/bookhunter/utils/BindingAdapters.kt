@@ -60,11 +60,3 @@ fun bindLoadingStatusToTextView(textView: TextView, status: BooksApiStatus) {
         BooksApiStatus.ERROR -> textView.setText(R.string.loading_error_message)
     }
 }
-
-@BindingAdapter("bookNoteText")
-fun bindBookNoteToEditText(editText: EditText, book: Book) {
-    when (book.note) {
-        null -> editText.hint = "Add your note or description here"
-        else -> editText.hint = book.note
-    }
-}

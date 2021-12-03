@@ -31,13 +31,6 @@ class RoomDateConverters {
  * Other data processing functions
  */
 
-fun isMaxResultsValid(stringNum: String): Boolean {
-    when (stringNum.toIntOrNull()) {
-        null -> return false
-        else -> return stringNum.toInt() in 1..40
-    }
-}
-
 @SuppressLint("NewApi")
 fun getStringFormattedDate(date: Date): String {
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")

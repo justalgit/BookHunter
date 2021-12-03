@@ -62,4 +62,10 @@ class SearchFragment : Fragment() {
 
         return binding.root
     }
+
+
+    override fun onDestroyView() {
+        this.hideKeyboard()
+        super.onDestroyView()
+    }
 }

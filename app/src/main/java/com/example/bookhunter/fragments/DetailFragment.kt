@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
@@ -57,9 +58,18 @@ class DetailFragment : Fragment() {
             }
         })
 
-       binding.selectedBookNote.addTextChangedListener {
-           viewModel.updateBook(viewModel.selectedBook.value!!)
-       }
+        binding.selectedBookNote.addTextChangedListener {
+            viewModel.updateBook(viewModel.selectedBook.value!!)
+        }
+
+        viewModel.isAttemptedToDelete.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                bookDeletingAlert(
+                    getString(R.string.book_delete_alert_title),
+                    getString(R.string.book_delete_alert_message, viewModel.selectedBook.value?.title)
+                )
+            }
+        })
 
         viewModel.isBookDeleted.observe(viewLifecycleOwner, Observer {
             if (it) {
@@ -99,8 +109,6 @@ class DetailFragment : Fragment() {
 
         val shareIntent = Intent(Intent.ACTION_SEND)
 
-        // TODO: fix extras for explicit intent
-
         shareIntent.setType("text/plain")
             .putExtra(Intent.EXTRA_TEXT, getString(
                 R.string.share_book_message,
@@ -113,7 +121,29 @@ class DetailFragment : Fragment() {
     }
 
 
+    private fun bookDeletingAlert(title: String, message: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        with(builder)
+        {
+            setTitle(title)
+            setMessage(message)
+
+            setPositiveButton(getString(R.string.alert_yes)) { _, _ ->
+                viewModel.deleteBook(viewModel.selectedBook.value!!)
+            }
+
+            setNegativeButton(getString(R.string.alert_no), null)
+
+            show()
+        }
+    }
+
     private fun showShortToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        this.hideKeyboard()
+        super.onDestroyView()
     }
 }

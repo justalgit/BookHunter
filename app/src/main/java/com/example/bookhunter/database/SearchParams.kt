@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter
 @Entity(tableName = "search_params")
 data class SearchParams(
     var searchQuery: String?,
-    var maxResults: Int?,
     @TypeConverters(RoomDateConverters::class)
     var date: Date? = null,
     @PrimaryKey(autoGenerate = true)

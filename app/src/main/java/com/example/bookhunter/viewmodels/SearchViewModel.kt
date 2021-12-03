@@ -4,13 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bookhunter.database.SearchParams
-import com.example.bookhunter.utils.isMaxResultsValid
 import java.util.*
 
 class SearchViewModel() : ViewModel() {
 
     val searchQuery = MutableLiveData<String>()
-    val maxResults = MutableLiveData<String>()
 
     private val _isNavigatingToResult = MutableLiveData<SearchParams>()
     val isNavigatingToResult: LiveData<SearchParams>
@@ -25,16 +23,14 @@ class SearchViewModel() : ViewModel() {
 
         _isInputValid.value = true
 
-        if (searchQuery.value?.isEmpty() == true || !isMaxResultsValid(maxResults.value.toString())) {
+        if (searchQuery.value?.isEmpty() == true) {
             _isInputValid.value = false
         }
         else {
             val currentSearchParams = SearchParams(
                 searchQuery.value,
-                maxResults.value?.toInt(),
                 Calendar.getInstance().time
             )
-
             _isNavigatingToResult.value = currentSearchParams
         }
 

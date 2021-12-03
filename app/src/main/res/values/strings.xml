@@ -8,7 +8,7 @@
     <string name="sort_by_date">Sort by date</string>
     <string name="sort_by_book_name">Sort by book name</string>
     <string name="clear_books_list">Clear books list</string>
-    <string name="sorted_by_date_message">Sorted by date of searching</string>
+    <string name="sorted_by_date_message">Sorted by date of saving</string>
     <string name="sorted_by_book_name_message">Sorted by book name</string>
     <string name="already_sorted_message">Your list already sorted</string>
     <string name="books_cleared_message">All of your saved books was deleted!</string>
@@ -17,13 +17,8 @@
     <!--Search fragment-->
     <string name="search_query_hint">What do you want to find?</string>
     <string name="search_query_text">Search query</string>
-    <string name="max_results_text">Books number</string>
-    <string name="max_results_input_description">Note: Google Books service requires this parameter to be
-        more than 0 and up to 40.</string>
-    <string name="max_results_hint">Number of books to show</string>
-    <string name="search_button_text">Search</string>
-    <string name="invalid_input_message">Query must not be empty and
-        books number must be valid!</string>
+    <string name="search_button_text">Find some books</string>
+    <string name="invalid_input_message">Query must not be empty!</string>
 
     <!--Search result fragment-->
     <string name="result_done_button_text">Done</string>
@@ -39,7 +34,6 @@
     <string name="history_cleared_message">All history records was deleted!</string>
     <string name="repeating_search_message">Repeating search with selected parameters...</string>
     <string name="search_query"><b>Search query:</b> %s</string>
-    <string name="search_max_results"><b>Number of books:</b> %s</string>
 
     <!--Result book view item-->
     <string name="book_authors"><b>Authors:</b> %s</string>
@@ -50,10 +44,11 @@
     <string name="book_note_hint">Type your note/description here</string>
     <string name="save_book_changes">Save changes</string>
     <string name="delete_book">Delete book</string>
-    <string name="book_updated_message">Successfully updated!</string>
     <string name="book_deleted_message">Book was deleted!</string>
     <string name="share_book">Share</string>
     <string name="share_book_message">Look what I found in BookHunter: \"%s\", available at: %s</string>
+    <string name="book_delete_alert_title">Deleting book</string>
+    <string name="book_delete_alert_message">Are you sure you want to delete \"%s\"?</string>
 
     <!--About fragment-->
     <string name="about_message">This app uses open <b>Google Books API</b> that gives you
@@ -70,6 +65,8 @@
     <string name="clear_books_alert_title">Clear saved books</string>
     <string name="clear_history_alert_message">Are you sure you want to delete all of your search history?</string>
     <string name="clear_history_alert_title">Clearing history</string>
+    <string name="nothing_saved_alert_title">No books were saved</string>
+    <string name="nothing_saved_alert_message">Continue without saving any of the books (hint: click on item to save it)?</string>
     <string name="nothing_to_delete">Nothing to delete!</string>
     <string name="nothing_to_sort">Nothing to sort!</string>
 
@@ -78,7 +75,5 @@
     <string name="search">Search</string>
     <string name="history">History</string>
     <string name="about">About</string>
-    <string name="nothing_saved_alert_title">No books were saved</string>
-    <string name="nothing_saved_alert_message">Continue without saving any of the books (hint: click on item to save it)?</string>
 
 </resources>

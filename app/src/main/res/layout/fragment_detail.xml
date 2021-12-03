@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:textSize="20sp"
-                android:text="@{@string/book_saving_date(viewModel.selectedBook.savingDate)}"
+                android:text="@{@string/book_saving_date(viewModel.selectedBook.dateAsString())}"
                 android:autoLink="web"
                 tools:text="Saved on: 31/12/2021 23:59:59"/>
 
@@ -86,22 +86,14 @@
                 android:text="@={viewModel.selectedBook.note}"
                 android:hint="@string/book_note_hint"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/delete_book_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/delete_book_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:text="@string/delete_book"
-                    android:layout_margin="16dp"
-                    android:onClick="@{() -> viewModel.deleteBook(viewModel.selectedBook)}"/>
-
-            </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:text="@string/delete_book"
+                android:layout_margin="16dp"
+                android:onClick="@{() -> viewModel.onDelete()}"/>
 
         </LinearLayout>
 

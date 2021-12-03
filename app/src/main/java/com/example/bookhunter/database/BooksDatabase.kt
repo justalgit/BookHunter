@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.bookhunter.utils.RoomDateConverters
 
-@Database(entities = [Book::class, SearchParams::class], version = 6, exportSchema = false)
+@Database(entities = [Book::class, SearchParams::class], version = 7, exportSchema = false)
 @TypeConverters(RoomDateConverters::class)
 abstract class BooksDatabase : RoomDatabase() {
 

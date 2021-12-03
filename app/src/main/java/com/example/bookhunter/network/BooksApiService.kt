@@ -13,8 +13,6 @@ private const val BASE_URL =  "https://www.googleapis.com/books/v1/"
 private const val QUERY_PARAM = "q"
 // Parameter that limits search results
 private const val MAX_RESULTS = "maxResults"
-// Parameter to filter by print type
-private const val PRINT_TYPE = "printType"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
