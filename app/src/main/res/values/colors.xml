@@ -8,9 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_grey">#FAFAFA</color>
-    <color name="stroke_color">#222222</color>
-    <color name="red">#D50000</color>
-    <color name="dark_red">#C00000</color>
-    <color name="cyan">#00DEE6</color>
-    <color name="dark_cyan">#00C4D1</color>
+    <color name="grey">#333333</color>
+    <color name="dark_grey">#151515</color>
+    <color name="red">#CB1B11</color>
+    <color name="variant_red">#B51B13</color>
+    <color name="cyan">#45ccd3</color>
+    <color name="variant_cyan">#00b7c5</color>
+    <color name="red_dark">#b92a16</color>
+    <color name="variant_red_dark">#a2150d</color>
 </resources>

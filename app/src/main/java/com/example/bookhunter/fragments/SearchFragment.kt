@@ -52,7 +52,7 @@ class SearchFragment : Fragment() {
 
         viewModel.isNavigatingToResult.observe(viewLifecycleOwner, Observer {
             if (it != null) {
-                this.hideKeyboard()
+                //this.hideKeyboard()
                 this.findNavController().navigate(
                     SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(it)
                 )

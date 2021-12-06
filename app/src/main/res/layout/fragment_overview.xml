@@ -24,10 +24,10 @@
                 android:id="@+id/header_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/dark_red"
+                android:background="?attr/colorSurface"
                 android:padding="16dp"
                 android:text="@string/header_text"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="26sp"
                 app:layout_constraintTop_toTopOf="parent" />
 

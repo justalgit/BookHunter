@@ -141,9 +141,4 @@ class DetailFragment : Fragment() {
     private fun showShortToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
-
-    override fun onDestroyView() {
-        this.hideKeyboard()
-        super.onDestroyView()
-    }
 }

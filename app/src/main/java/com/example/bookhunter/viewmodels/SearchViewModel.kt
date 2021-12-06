@@ -1,5 +1,6 @@
 package com.example.bookhunter.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +24,8 @@ class SearchViewModel() : ViewModel() {
 
         _isInputValid.value = true
 
-        if (searchQuery.value?.isEmpty() == true) {
+        Log.d("SearchViewModel", "Query value: ${searchQuery.value}")
+        if (searchQuery.value == null || searchQuery.value?.isEmpty() == true) {
             _isInputValid.value = false
         }
         else {

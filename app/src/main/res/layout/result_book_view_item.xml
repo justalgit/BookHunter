@@ -20,7 +20,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:strokeColor="@color/stroke_color"
+            app:strokeColor="@color/dark_grey"
             app:cardElevation="10dp"
             android:layout_margin="8dp"
             android:background="?android:attr/selectableItemBackground"

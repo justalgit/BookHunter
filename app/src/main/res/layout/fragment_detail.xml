@@ -75,7 +75,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="@color/light_grey"
                 android:gravity="top|left"
                 android:inputType="textMultiLine"
                 android:overScrollMode="always"

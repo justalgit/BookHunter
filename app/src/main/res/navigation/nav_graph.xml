@@ -11,7 +11,7 @@
         android:id="@+id/overviewFragment"
         android:name="com.example.bookhunter.fragments.OverviewFragment"
         android:label="BookHunter"
-        tools:layout="@layout/fragment_overview" >
+        tools:layout="@layout/fragment_overview">
         <action
             android:id="@+id/action_overviewFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
@@ -23,7 +23,7 @@
             app:destination="@id/detailFragment" />
         <action
             android:id="@+id/action_overviewFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment" />
+            app:destination="@id/aboutFragment"/>
     </fragment>
 
 
@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_searchResultFragment"
-            app:destination="@id/searchResultFragment" />
+            app:destination="@id/searchResultFragment"/>
     </fragment>
 
 
