@@ -66,7 +66,7 @@
     <string name="clear_history_alert_message">Are you sure you want to delete all of your search history?</string>
     <string name="clear_history_alert_title">Clearing history</string>
     <string name="nothing_saved_alert_title">No books were saved</string>
-    <string name="nothing_saved_alert_message">Continue without saving any of the books (hint: click on item to save it)?</string>
+    <string name="nothing_saved_alert_message">Continue without saving any of the books?</string>
     <string name="nothing_to_delete">Nothing to delete!</string>
     <string name="nothing_to_sort">Nothing to sort!</string>
 

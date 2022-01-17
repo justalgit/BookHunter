@@ -97,4 +97,7 @@ dependencies {
 
     // MiltiDex
     implementation "com.android.support:multidex:$multidexVersion"
+
+    // ThreeTenABP
+    implementation "com.jakewharton.threetenabp:threetenabp:1.2.1"
 }

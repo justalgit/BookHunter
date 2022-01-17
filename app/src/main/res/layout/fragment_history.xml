@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty_history_message"
+            android:textAlignment="center"
             android:textSize="20sp"
             app:messageVisibility="@{viewModel.history}"
             app:layout_constraintBottom_toBottomOf="parent"

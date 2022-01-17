@@ -66,4 +66,6 @@ class DetailViewModel(
         _isBookDeleted.value = false
         _isAttemptedToDelete.value = false
     }
+
+
 }

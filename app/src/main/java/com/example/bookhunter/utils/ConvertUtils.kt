@@ -2,12 +2,13 @@ package com.example.bookhunter.utils
 
 import android.annotation.SuppressLint
 import androidx.room.TypeConverter
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
+//import java.time.Instant
+//import java.time.LocalDateTime
+//import java.time.ZoneId
+//import java.time.format.DateTimeFormatter
 import java.util.*
+import org.threeten.bp.*
+import org.threeten.bp.format.DateTimeFormatter
 
 /**
  * Converters class for date storing in Room
